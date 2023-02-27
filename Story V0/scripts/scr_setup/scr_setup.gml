@@ -1,3 +1,6 @@
+
+randomize()
+
 #region game data and macs
 
 global.yscale = 1
@@ -8,6 +11,7 @@ global.game = {}
 global.settings = {
 	shader_on: true,
 }
+#macro SETTINGS_SHADER (global.settings.shader_on)
 
 
 
@@ -69,3 +73,8 @@ keyboard_set_map(ord("Z"), vk_enter)
 keyboard_set_map(ord("X"), vk_backspace)
 
 #endregion map keys
+#region set models
+
+audio_falloff_set_model(audio_falloff_exponent_distance)
+
+#endregion set models

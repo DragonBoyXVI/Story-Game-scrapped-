@@ -54,6 +54,8 @@ function fun_set_player(_player) {
 		
 	}
 	
+	mask_index = sprite_walk[1]
+	
 }
 
 function fun_change_sprite() {

@@ -33,8 +33,8 @@ follow_offy = -32
 #endregion camera movement
 #region camera lens
 
-lens_current = 1
-lens_tween = 1 //cur moves to tween
+lens_current = 3
+lens_tween = 3 //cur moves to tween
 
 #endregion camera lens
 #region pause stuff
@@ -42,4 +42,20 @@ lens_tween = 1 //cur moves to tween
 pause_surf = -1
 pause_buff = -1
 
-#region pause stuff
+#endregion pause stuff
+#region layers
+
+floor_layer = -1
+floor_layer_asset = -1
+
+#endregion layers
+#region Shader
+
+shader_uniform_color = shader_get_uniform(shd_replace_blackwhite, "new_color")
+shader_uniform_percent = shader_get_uniform(shd_replace_blackwhite, "blend_per")
+
+blend_amt = 0
+blend_color = [0, 0, 0]
+color_changed = false
+
+#endregion Shader
