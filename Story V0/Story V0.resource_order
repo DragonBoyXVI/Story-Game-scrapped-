@@ -22,6 +22,7 @@
     {"name":"nt_goals","order":2,"path":"notes/nt_goals/nt_goals.yy",},
     {"name":"nt_greek","order":1,"path":"notes/nt_greek/nt_greek.yy",},
     {"name":"spr_over_drac_walk_left","order":3,"path":"sprites/spr_over_drac_walk_left/spr_over_drac_walk_left.yy",},
+    {"name":"obj_camera","order":1,"path":"objects/obj_camera/obj_camera.yy",},
     {"name":"spr_over_drac_idle_right","order":2,"path":"sprites/spr_over_drac_idle_right/spr_over_drac_idle_right.yy",},
   ],
 }

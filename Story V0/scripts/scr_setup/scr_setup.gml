@@ -1,8 +1,13 @@
 #region game data and macs
 
+global.yscale = 1
+#macro YSCALE (global.yscale)
+
 global.game = {}
 
-global.settings = {}
+global.settings = {
+	shader_on: true,
+}
 
 
 
@@ -28,6 +33,27 @@ enum BEASTS {
 	JAB,
 	
 	ALLBEASTS,
+	
+}
+
+enum STATES {
+	
+	//player
+	PLAY,
+	IDLE,
+	
+	//camera
+	FOLLOW_POS,
+	FOLLOW_OBJ,
+	
+}
+
+enum FACES {
+	
+	RIGHT,
+	UP,
+	LEFT,
+	DOWN,
 	
 }
 
