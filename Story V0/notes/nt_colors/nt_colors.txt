@@ -1,0 +1,2 @@
+Rubblesville sidewalk gray
+make_color_rgb(59.9, 63.0, 72.9)
