@@ -1,4 +1,6 @@
 
+depth = -bbox_bottom
+
 #region inputs
 
 mouse_left = mouse_check_button(mb_left)

@@ -12,7 +12,7 @@ camera_set_view_size(VIEW, SCREEN_WIDTH/lens_current, SCREEN_HEIGHT/lens_current
 
 var _inst_layer = layer_get_id("Instances")
 
-depth = layer_get_depth(_inst_layer)-1
+depth = layer_get_depth(_inst_layer)+1
 
 #region floor layer
 

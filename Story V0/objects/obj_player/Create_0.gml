@@ -34,12 +34,20 @@ can_special = true
 sprite_idle = array_create(2, -1) //all sprites should be drawn facing right if they flip
 sprite_walk = array_create(2, -1)
 
+wall_layer_elem = -1
+water_layer_elem = -1
+
+bbox_width = -1
+bbox_height = -1
+
 function fun_set_player(_player) {
 	
 	switch(_player) {
 		
 		case PLAYERS.DRAC:
 		#region set up drac
+		
+		swm_spd = 0.75
 		
 		sprite_flips = false
 		
@@ -55,6 +63,15 @@ function fun_set_player(_player) {
 	}
 	
 	mask_index = sprite_walk[1]
+	
+	bbox_width = bbox_right - bbox_left
+	bbox_height = bbox_bottom - bbox_top
+	
+	bbox_left_to_center = bbox_left - x
+	bbox_right_to_center = bbox_right - x
+	
+	bbox_top_to_center = bbox_top - y
+	bbox_bottom_to_center = bbox_bottom - y
 	
 }
 

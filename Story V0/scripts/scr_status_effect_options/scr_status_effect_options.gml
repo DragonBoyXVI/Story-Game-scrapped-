@@ -1,0 +1,3 @@
+
+#macro STATUS_POISON_HP (1)
+#macro STATUS_POISON_STAM (4)

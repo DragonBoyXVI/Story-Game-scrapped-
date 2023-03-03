@@ -1,7 +1,7 @@
 ---The Basics
 
 --Player that walks around #
--makes footstep sounds
+-makes footstep sounds #
 -can collide with tiles and physical walls
 -can interact with objects
 
