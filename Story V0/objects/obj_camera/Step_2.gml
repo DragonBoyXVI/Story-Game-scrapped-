@@ -28,9 +28,39 @@ switch(state) {
 }
 
 #endregion move
+#region resize camera
+
+if (lens_current != lens_tween) then {
+	
+	lens_current -= sign( lens_current - lens_tween )/10
+	
+	camera_set_view_size(VIEW, SCREEN_WIDTH/lens_current, SCREEN_HEIGHT/lens_current)
+	
+}
+
+#endregion resize camera
 #region listener
 
 audio_listener_position(x, y, 0)
 audio_listener_velocity(x - xprevious, y - yprevious, 0)
 
 #endregion listener
+#region pausing
+
+if (can_pause and keyboard_check_pressed(key_pause_press)) then {
+	
+	instance_activate_object(obj_game_pauser)
+	obj_game_pauser.key_pause = true
+	obj_game_pauser.key_unpause = key_pause_press
+	obj_game_pauser.has_menu = has_menu
+	
+}
+
+#endregion pausing
+#region debug
+
+if (keyboard_check_pressed(ord("1"))) then lens_tween = 1
+if (keyboard_check_pressed(ord("2"))) then lens_tween = 2
+if (keyboard_check_pressed(ord("3"))) then lens_tween = 3
+
+#endregion debug

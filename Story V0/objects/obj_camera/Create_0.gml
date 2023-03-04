@@ -37,12 +37,6 @@ lens_current = 3
 lens_tween = 3 //cur moves to tween
 
 #endregion camera lens
-#region pause stuff
-
-pause_surf = -1
-pause_buff = -1
-
-#endregion pause stuff
 #region layers
 
 floor_layer = -1
@@ -59,3 +53,10 @@ blend_color = [0, 0, 0]
 color_changed = false
 
 #endregion Shader
+#region pausing
+
+can_pause = true
+key_pause_press = ord("P")
+has_menu = true
+
+#endregion pausing

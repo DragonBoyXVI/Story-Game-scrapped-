@@ -2,7 +2,7 @@
 
 --Player that walks around #
 -makes footstep sounds #
--can collide with tiles and physical walls
+-can collide with tiles and physical walls #
 -can interact with objects
 
 --Cutscene manager that can move stuff and set variables

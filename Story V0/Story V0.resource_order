@@ -61,6 +61,7 @@
     {"name":"snd_metal_step_clawed_2","order":11,"path":"sounds/snd_metal_step_clawed_2/snd_metal_step_clawed_2.yy",},
     {"name":"spr_light","order":3,"path":"sprites/spr_light/spr_light.yy",},
     {"name":"spr_water_tiles","order":2,"path":"sprites/spr_water_tiles/spr_water_tiles.yy",},
+    {"name":"obj_game_pauser","order":1,"path":"objects/obj_game_pauser/obj_game_pauser.yy",},
     {"name":"spr_over_drac_idle_right","order":2,"path":"sprites/spr_over_drac_idle_right/spr_over_drac_idle_right.yy",},
     {"name":"snd_wood_step_clawed_1","order":13,"path":"sounds/snd_wood_step_clawed_1/snd_wood_step_clawed_1.yy",},
   ],
