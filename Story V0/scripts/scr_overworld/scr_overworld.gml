@@ -75,3 +75,60 @@ function fun_draw_self_water(_wtr_height = global.water_height) {
 	
 }
 #endregion shadows
+#region check for interacts
+
+function fun_check_for_interact(_me, _touched) { //run inside me
+	
+	if not _touched or not _me then exit
+	
+	var _triggered = false
+	
+	switch(_me.object_index) {
+		
+		case obj_player:
+		#region
+		
+		_triggered = _touched.is_player_trigger
+		
+		#endregion
+		break
+		
+		case obj_player_bullet:
+		#region
+		
+		_triggered = ( _touched.is_bullet_trigger and ( elem == _touched.bullet_elem or _touched.bullet_elem == ELEMENT.GARBO ) )
+		
+		#endregion
+		break
+		
+		case obj_player_interact:
+		#region
+		
+		_triggered = _touched.is_interact_trigger
+		
+		#endregion
+		break
+		
+	}
+	
+	if (_triggered) then with _touched {
+		
+		if (is_method(on_trigger)) then {
+			
+			on_trigger()
+			
+		} else with instance_create_depth(0, 0, 0, obj_cutscene_manager) {
+			
+			scene_info = other.scene_info
+			
+		}
+		
+	}
+	
+	//show_debug_message(_triggered)
+	
+	return _triggered
+	
+}
+
+#region check for interacts

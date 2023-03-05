@@ -31,6 +31,10 @@ if (key_pause or keyboard_check_pressed(key_unpause)) then {
 		
 		instance_activate_all()
 		paused = false
+		
+		if buffer_exists(pause_buffer) then buffer_delete(pause_buffer)
+		if surface_exists(pause_surface) then surface_free(pause_surface)
+		
 		instance_deactivate_object(id)
 		
 	} else { //pause the game

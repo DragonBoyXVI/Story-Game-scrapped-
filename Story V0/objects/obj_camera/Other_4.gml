@@ -32,3 +32,17 @@ if (layer_exists("Tiles_1")) then {
 floor_layer_asset = floor_layer == -1 ? -1 : layer_tilemap_get_id(floor_layer)
 
 #endregion floor layer
+
+fun_room_to_shader()
+fun_room_to_camsize()
+
+
+/*
+if sequence_exists(stored_seq) then {
+	
+	layer_sequence_x(stored_seq, camera_get_view_x(VIEW))
+	layer_sequence_y(stored_seq, camera_get_view_y(VIEW))
+	layer_sequence_xscale(stored_seq, 2/lens_current)
+	layer_sequence_yscale(stored_seq, 2/lens_current)
+	
+}

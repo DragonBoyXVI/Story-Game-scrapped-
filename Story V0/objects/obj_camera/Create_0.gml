@@ -6,7 +6,11 @@ if (instance_number(obj_camera) > 1) then {
 	
 }
 
+fun_init_rng() //test
+
 state = STATES.FOLLOW_OBJ
+
+trans_surf = -1
 
 #region macky wackies
 

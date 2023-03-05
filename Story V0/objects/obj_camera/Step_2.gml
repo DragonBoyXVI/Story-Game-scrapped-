@@ -47,9 +47,12 @@ audio_listener_velocity(x - xprevious, y - yprevious, 0)
 #endregion listener
 #region pausing
 
-if (can_pause and keyboard_check_pressed(key_pause_press)) then {
+if (!instance_exists(obj_cutscene_manager) and can_pause and keyboard_check_pressed(key_pause_press)) then {
 	
 	instance_activate_object(obj_game_pauser)
+	
+	if !instance_exists(obj_game_pauser) then instance_create_depth(x, y, depth, obj_game_pauser)
+	
 	obj_game_pauser.key_pause = true
 	obj_game_pauser.key_unpause = key_pause_press
 	obj_game_pauser.has_menu = has_menu

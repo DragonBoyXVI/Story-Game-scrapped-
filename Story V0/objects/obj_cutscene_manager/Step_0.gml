@@ -1,0 +1,1 @@
+script_execute_ext(scene_info[scene][0], scene_info[scene], 1)

@@ -80,6 +80,12 @@ switch(state) {
 	x += _xspd
 	y += _yspd
 	
+	#region check for interacts
+	
+	if fun_check_for_interact(id, instance_place(x, y, obj_cutscene_trigger)) then exit
+	
+	#endregion check for interacts
+	
 	#endregion standard play
 	break
 	

@@ -8,10 +8,29 @@ global.water_height = 32
 global.stored_coords = [-1, -1]
 global.stored_room = -1
 
+global.battle_stored_room = -1
+global.in_trans = false
+global.stored_trans = -1
+
 global.yscale = 1
 #macro YSCALE (global.yscale)
 
-global.game = {}
+global.game = {
+	
+	rng: [], //array_create(100, -1),
+	rng_pos: 0,
+	
+	#region flags
+	
+	flags: [],
+	
+	#endregion flags
+	#region player data
+	
+	
+	#endregion player data
+	
+}
 
 global.settings = {
 	shader_on: true,
@@ -63,6 +82,21 @@ enum FACES {
 	UP,
 	LEFT,
 	DOWN,
+	
+}
+
+enum ELEMENT {
+	
+	BLUNT,
+	FIRE,
+	ICE,
+	POISON,
+	LIFE,
+	ELEC,
+	DECAY,
+	RAD,
+	
+	GARBO,
 	
 }
 
