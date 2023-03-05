@@ -131,4 +131,4 @@ function fun_check_for_interact(_me, _touched) { //run inside me
 	
 }
 
-#region check for interacts
+#endregion check for interacts

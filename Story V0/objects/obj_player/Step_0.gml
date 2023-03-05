@@ -86,7 +86,85 @@ switch(state) {
 	
 	#endregion check for interacts
 	
+	#region enter key
+	
+	if (key_enter) then {
+		
+		with obj_player_interact instance_destroy()
+		
+		switch(face) {
+			
+			case FACES.LEFT:
+			instance_create_depth(x-64, y, depth, obj_player_interact)
+			break
+			
+			case FACES.RIGHT:
+			instance_create_depth(x+64, y, depth, obj_player_interact)
+			break
+			
+			case FACES.UP:
+			instance_create_depth(x, y-64, depth, obj_player_interact)
+			break
+			
+			case FACES.DOWN:
+			instance_create_depth(x, y+64, depth, obj_player_interact)
+			break
+			
+		}
+		
+	}
+	
+	#endregion enter key
+	
+	#region special
+	
+	if (can_special) then {
+		
+		switch(GAME_CURPLAYER) {
+			
+			case PLAYERS.DRAC:
+			#region drac specials
+			
+			if (mouse_right_clicked) then { //posion
+				
+				state = STATES.TRANS //SP_DRAC_POISON
+				image_index = 0
+				sprite_index = face_right ? spr_over_drac_needle_pull_right : spr_over_drac_needle_pull_left
+				
+			} else if (mouse_left_clicked) { //jump
+				
+				
+				
+			}
+			
+			#endregion drac specials
+			break
+			
+		}
+		
+	}
+	
+	#endregion special
+	
 	#endregion standard play
+	break
+	
+	case STATES.SP_DRAC_POISON:
+	#region drac needle
+	
+	var _mouse_right = (mouse_x > x)
+	
+	if (_mouse_right != face_right) then {
+		
+		image_index = 0
+		sprite_index = spr_over_drac_needle_trans
+		state = STATES.TRANS
+		
+	}
+	
+	if (mouse_right_released) then state = STATES.PLAY
+	
+	#endregion drac needle
 	break
 	
 }

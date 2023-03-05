@@ -1,5 +1,5 @@
 
-global.settings.shader_on = keyboard_check(ord("L"))
+//global.settings.shader_on = keyboard_check(ord("L"))
 
 if (SETTINGS_SHADER) then {
 	
