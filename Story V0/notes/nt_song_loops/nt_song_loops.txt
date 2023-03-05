@@ -1,9 +1,0 @@
-hit me harder test
-loop begin: 0:27.8 
-loop end: 2:14.7 (74.7)
-loop length: (46.9)
-
-overworld test
-loop begin: 0:07.8
-loop end: 0:46.8
-loop length: (39)

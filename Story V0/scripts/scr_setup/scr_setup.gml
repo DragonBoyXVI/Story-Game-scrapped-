@@ -3,8 +3,6 @@ randomize()
 
 #region game data and macs
 
-global.in_battle = false
-
 global.water_height = 32
 
 global.stored_coords = [-1, -1]
@@ -22,8 +20,6 @@ global.game = {
 	rng: [], //array_create(100, -1),
 	rng_pos: 0,
 	
-	cur_player: 0,
-	
 	#region flags
 	
 	flags: [],
@@ -35,21 +31,12 @@ global.game = {
 	#endregion player data
 	
 }
-#macro GAME_CURPLAYER (global.game.cur_player)
 
 global.settings = {
-	
 	shader_on: true,
-	draw_rounded: false,
-	
-	gain_music: 1,
-	gain_sfx: 1,
-	
 }
 #macro SETTINGS_SHADER (global.settings.shader_on)
-#macro SETTINGS_DRAW_ROUNDED (global.settings.draw_rounded)
-#macro SETTINGS_GAIN_MUS (global.settings.gain_music)
-#macro SETTINGS_GAIN_SFX (global.settings.gain_sfx)
+
 
 
 #endregion game data and macs
@@ -82,10 +69,6 @@ enum STATES {
 	//player
 	PLAY,
 	IDLE,
-	TRANS,
-	
-	SP_DRAC_POISON,
-	SP_DRAC_JUMP,
 	
 	//camera
 	FOLLOW_POS,
@@ -179,61 +162,3 @@ _eff_bit.bypass = true
 audio_bus_main.effects[4] = _eff_bit
 
 #endregion audio effects
-#region fonts and colours
-
-var _mapstring = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()`-=[];',./\\~_+{}:\"<>?|αβγδεζηθικλμνξπρστυφχψΩ"
-// use regular o for omicron
-
-function fun_string_reverse(_string) {
-	
-	var _new_string = ""
-	var i = string_length(_string)
-	repeat(i) {
-		
-		_new_string = _new_string + string_char_at(_string, i)
-		
-		i--
-		
-	}
-	
-	return _new_string
-	
-}
-
-_mapstring = fun_string_reverse(_mapstring)
-
-global.fnt_drac = font_add_sprite_ext(spr_drac_font, _mapstring, true, 2)
-#macro FNT_DRAC (global.fnt_drac)
-
-#macro FNT_KATE (-1)
-
-#macro FNT_MUD (-1)
-
-#macro FNT_FEVIR (-1)
-
-#macro FNT_JAB (-1)
-
-
-global.c_drac = make_color_rgb(39,141,35)
-#macro C_DRAC (global.c_drac)
-
-global.c_mud = make_color_rgb(52,45,16)
-#macro C_MUD (global.c_mud)
-
-global.c_kate = make_color_rgb(0,155,255)
-#macro C_KATE (global.c_kate)
-
-global.c_fevir = make_color_rgb(255,155,0)
-#macro C_FEV (global.c_fevir)
-
-global.c_jab = make_color_rgb(155,155,155)
-#macro C_JAB (global.c_jab)
-
-
-global.c_poison = make_colour_rgb(93, 18, 42)
-#macro C_POISON (global.c_poison)
-
-global.c_life = make_colour_rgb(4, 100, 26)
-#macro C_LIFE (global.c_life)
-
-#endregion fonts and colours

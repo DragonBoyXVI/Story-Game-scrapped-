@@ -17,13 +17,13 @@ function fun_init_rng() {
 	
 }
 
-function fun_draw_rng(_scale = 1) {
+function fun_draw_rng() {
 	
 	var _drawn = global.game.rng[global.game.rng_pos]
 	
 	global.game.rng_pos = ( global.game.rng_pos + 1 > array_length(global.game.rng) ? 0 : global.game.rng_pos + 1 )
 	
-	return _drawn * _scale
+	return _drawn
 	
 }
 

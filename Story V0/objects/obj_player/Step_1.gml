@@ -16,6 +16,6 @@ key_down = keyboard_check(vk_down)
 key_left = keyboard_check(vk_left)
 key_right = keyboard_check(vk_right)
 
-key_enter = keyboard_check_pressed(vk_enter)
+key_enter = keyboard_check(vk_enter)
 
 #endregion inputs
