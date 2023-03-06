@@ -27,6 +27,8 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"drac","folderPath":"folders/Sounds/drac.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"footsteps","folderPath":"folders/Sounds/footsteps.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"magic","folderPath":"folders/Sounds/magic.yy","order":3,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"music","folderPath":"folders/Sounds/music.yy","order":4,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"test","folderPath":"folders/Sounds/music/test.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Sprites.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Drac","folderPath":"folders/Sprites/Drac.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"overworld","folderPath":"folders/Sprites/Drac/overworld.yy","order":1,},
@@ -34,8 +36,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"collision tiles","folderPath":"folders/Tile Sets/collision tiles.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy","order":8,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"music","folderPath":"folders/Sounds/music.yy","order":4,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"test","folderPath":"folders/Sounds/music/test.yy","order":1,},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"RNG_table_base.txt","CopyToMask":-1,"filePath":"datafiles/RNG",},

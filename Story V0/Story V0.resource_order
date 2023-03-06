@@ -16,6 +16,8 @@
     {"name":"drac","order":2,"path":"folders/Sounds/drac.yy",},
     {"name":"footsteps","order":1,"path":"folders/Sounds/footsteps.yy",},
     {"name":"magic","order":3,"path":"folders/Sounds/magic.yy",},
+    {"name":"music","order":4,"path":"folders/Sounds/music.yy",},
+    {"name":"test","order":1,"path":"folders/Sounds/music/test.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Drac","order":1,"path":"folders/Sprites/Drac.yy",},
     {"name":"overworld","order":1,"path":"folders/Sprites/Drac/overworld.yy",},
@@ -23,8 +25,6 @@
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"collision tiles","order":1,"path":"folders/Tile Sets/collision tiles.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
-    {"name":"music","order":4,"path":"folders/Sounds/music.yy",},
-    {"name":"test","order":1,"path":"folders/Sounds/music/test.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"nt_song_times","order":3,"path":"notes/nt_song_times/nt_song_times.yy",},

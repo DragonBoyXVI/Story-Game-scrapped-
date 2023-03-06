@@ -4,6 +4,7 @@ draw_text(0, 32, global.game.rng)
 draw_text(0, 48, instance_count)
 
 draw_text(0, 64, string("{0} {1}", mus, mus == -1 ? 0 : audio_sound_get_track_position(mus)))
-draw_text(0, 80, [loop_end, loop_sub])
+draw_text(0, 80, string("{0} {1}", mus_tex, mus_tex == -1 ? 0 : audio_sound_get_track_position(mus_tex)))
+draw_text(0, 96, [loop_end, loop_sub])
 
 //global.yscale += 0.01 * (keyboard_check(ord("0")) - keyboard_check(ord("9")))

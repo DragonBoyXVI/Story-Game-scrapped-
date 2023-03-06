@@ -75,6 +75,8 @@ mus_prev = -1
 mus_tex = -1
 mus_tex_prev = -1
 
+mus_tex_index = -1
+
 mus_tex_ids = []
 
 #endregion music
