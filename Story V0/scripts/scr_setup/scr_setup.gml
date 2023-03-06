@@ -33,9 +33,19 @@ global.game = {
 }
 
 global.settings = {
+	
 	shader_on: true,
+	
+	draw_rounded: false,
+	
+	gain_music: 1,
+	gain_sfx: 1,
+	
 }
 #macro SETTINGS_SHADER (global.settings.shader_on)
+#macro SETTINGS_DRAW_ROUND (global.settings.draw_rounded)
+#macro SETTINGS_GAIN_MUS (global.settings.gain_music)
+#macro SETTINGS_GAIN_SFX (global.settings.gain_sfx)
 
 
 

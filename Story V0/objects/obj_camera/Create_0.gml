@@ -64,3 +64,17 @@ key_pause_press = ord("P")
 has_menu = true
 
 #endregion pausing
+#region music
+
+loop_end = 0
+loop_sub = 0
+
+mus = -1
+mus_prev = -1
+
+mus_tex = -1
+mus_tex_prev = -1
+
+mus_tex_ids = []
+
+#endregion music

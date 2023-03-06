@@ -1,0 +1,7 @@
+test battle
+loop end: 74.7
+loop subtract: 65.5
+
+test over:
+loop end: 46.8
+loop subtract: 39
