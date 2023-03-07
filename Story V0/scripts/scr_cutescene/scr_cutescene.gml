@@ -132,6 +132,7 @@ function fun_layer_surface_set() {
 			
 			with obj_camera { if !surface_exists(trans_surf) then trans_surf = surface_create(SCREEN_WIDTH/2, SCREEN_HEIGHT/2) }
 			surface_set_target(obj_camera.trans_surf)
+			draw_clear_alpha(c_white, 0)
 			
 		}
 		
@@ -165,6 +166,8 @@ function fun_trans_place_seq(_type, _x = camera_get_view_x(VIEW), _y = camera_ge
 	layer_script_begin(_layer, fun_layer_surface_set)
 	layer_script_end(_layer, fun_layer_surface_unset)
 	
+	//show_debug_message("{0} {1}", seq_black_fadein, _type)
+	
 	return _seq
 	
 }
@@ -188,6 +191,8 @@ function fun_trans_start(_target, _innie, _outie) {
  }
  
  function fun_trans_goto() {
+	layer_sequence_destroy(self.elementID)
+	layer_destroy("trans")
 	room_goto(global.stored_room)
  }
  

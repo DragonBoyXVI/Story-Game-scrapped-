@@ -12,6 +12,8 @@ if (_type == "sequence event") then {
 	
 	var _this = layer_instance_get_instance(_elem_id)
 	
+	if (_this == noone) then exit
+	
 	switch(_message) {
 		
 		case "step claw":

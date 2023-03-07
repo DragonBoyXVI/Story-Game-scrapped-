@@ -4,7 +4,7 @@ is_bullet_trigger = true
 is_interact_trigger = true
 
 scene_info = [
-	[fun_cut_change_room, rm_test_goto, 500, 500, seq_black_fadein, seq_black_fadeout],
+	[fun_cut_change_room, rm_test_goto, 500, 500, seq_black_fast_fadein, seq_black_fast_fadeout],
 ]
 
 /*

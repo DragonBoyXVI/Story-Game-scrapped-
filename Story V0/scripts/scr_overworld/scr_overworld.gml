@@ -33,7 +33,7 @@ function fun_footstep_clawed(_x, _y, _floorasset) {
 		}
 		//show_debug_message("Index: {0} Snd: {1}", _index, _snd)
 		if (_index and _snd != -1) then
-			audio_play_sound_at(_snd, _x, _y, 0, 200, 400, 1, false, 1, _gain, 0, _pitch)
+			audio_play_sound_at(_snd, _x, _y, 0, 200, 400, 1, false, 1, _gain * SETTINGS_GAIN_SFX, 0, _pitch)
 		
 	}
 	

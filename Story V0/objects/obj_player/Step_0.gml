@@ -86,7 +86,90 @@ switch(state) {
 	
 	#endregion check for interacts
 	
+	#region check interact
+	
+	if (key_enter) then {
+		
+		instance_destroy(obj_player_interact)
+		
+		switch(face) {
+			
+			case FACES.RIGHT:
+			instance_create_depth(x+32, y, depth, obj_player_interact)
+			break
+			
+			case FACES.LEFT:
+			instance_create_depth(x-32, y, depth, obj_player_interact)
+			break
+			
+			case FACES.UP:
+			instance_create_depth(x, y-48, depth, obj_player_interact)
+			break
+			
+			case FACES.DOWN:
+			instance_create_depth(x, y+32, depth, obj_player_interact)
+			break
+			
+		}
+		
+	}
+	
+	#endregion check interact
+	
+	#region check specials
+	
+	if (can_special) then {
+		
+		if (mouse_right_clicked) then {
+			
+			switch(GAME_CURPLAYER) {
+				
+				case PLAYERS.DRAC:
+				#region
+				
+				state = STATES.SPEC
+				image_index = 0
+				sprite_index = face_right ? spr_over_drac_needle_pullup_right : spr_over_drac_needle_pullup_left
+				
+				#endregion
+				break
+				
+			}
+			
+		} else if (mouse_left_clicked) then {
+			
+			
+			
+		}
+		
+	}
+	
+	#endregion check specials
+	
 	#endregion standard play
+	break
+	
+	case STATES.SP_DRAC_BULLET:
+	#region
+	
+	var _mouse_face = (mouse_x > x)
+	
+	if (face_right != _mouse_face) then {
+		
+		state = STATES.SPEC
+		image_index = 0
+		sprite_index = spr_over_drac_needle_trans
+		exit
+		
+	}
+	
+	if (mouse_right_released) then {
+		
+		state = STATES.PLAY
+		
+	}
+	
+	#endregion
 	break
 	
 }

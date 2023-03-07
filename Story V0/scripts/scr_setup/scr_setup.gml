@@ -27,10 +27,20 @@ global.game = {
 	#endregion flags
 	#region player data
 	
+	cur_player : 0,
 	
 	#endregion player data
 	
+	mods: {
+		
+		rng_table: true,
+		
+	},
+	
 }
+#macro GAME_CURPLAYER (global.game.cur_player)
+
+#macro GAMEMOD_RNG_TABLE (global.game.mods.rng_table)
 
 global.settings = {
 	
@@ -38,7 +48,7 @@ global.settings = {
 	
 	draw_rounded: false,
 	
-	gain_music: 1,
+	gain_music: 0.75,//1,
 	gain_sfx: 1,
 	
 }
@@ -79,6 +89,13 @@ enum STATES {
 	//player
 	PLAY,
 	IDLE,
+	
+	SPEC,
+	
+	SP_DRAC_BULLET,
+	SP_DRAC_JUMP,
+	
+	SP_MUD_STEALTH,
 	
 	//camera
 	FOLLOW_POS,
