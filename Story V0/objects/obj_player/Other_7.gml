@@ -13,6 +13,12 @@ switch(sprite_index) {
 	#endregion
 	break
 	
+	case spr_over_drac_needle_fire_left:
+	case spr_over_drac_needle_fire_right:
+	fun_change_sprite()
+	state = STATES.PLAY
+	break
+	
 	case spr_over_drac_needle_trans:
 	#region 
 	

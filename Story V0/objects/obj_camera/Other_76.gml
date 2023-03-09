@@ -20,6 +20,21 @@ if (_type == "sequence event") then {
 		fun_footstep_clawed(_this.x, _this.y, floor_layer_asset)
 		break
 		
+		case "drac over fire needle":
+		with instance_create_depth(_this.x, _this.y-96, _this.depth, obj_player_bullet) {
+			
+			my_sound = audio_play_sound_on(my_emitter, snd_flying_poison_loop_test, true, 1)
+			spd = 100
+			
+			sprite_index = spr_bullet_needle
+			
+			elem = ELEMENT.POISON
+			
+			direction = point_direction(x, y, mouse_x, mouse_y)
+			
+		}
+		break
+		
 	}
 	
 }

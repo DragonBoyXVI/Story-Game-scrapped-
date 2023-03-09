@@ -5,3 +5,5 @@ loop subtract: 65.5
 test over:
 loop end: 46.8
 loop subtract: 39
+
+//note, the looping works, just make sure that the tex tracks are equal length to the main track

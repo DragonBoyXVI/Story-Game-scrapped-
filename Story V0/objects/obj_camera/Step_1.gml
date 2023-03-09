@@ -19,7 +19,8 @@ if (mus_tex_prev != -1) then {
 }
 
 if (mus != -1) then {
-	
+	#region 
+	/*
 	var _pos = audio_sound_get_track_position(mus)
 	if (_pos >= loop_end) then {
 		
@@ -41,6 +42,9 @@ if (mus != -1) then {
 		audio_sound_set_track_position(mus_tex, loop_end - 2)
 		
 	}
+	*/
+	#endregion
+	
 	
 }
 
@@ -52,6 +56,14 @@ if keyboard_check_pressed(ord("O")) then {
 if keyboard_check_pressed(ord("T")) then {
 	fun_play_tex_music(snd_battle_test_drac, 1)
 	//show_debug_message("deedit")
+}
+
+
+if keyboard_check_pressed(ord("X")) then {
+	
+	if (mus != -1) then audio_sound_set_track_position(mus, audio_sound_get_loop_end(mus) - 2)
+	if (mus_tex != -1) then audio_sound_set_track_position(mus_tex, audio_sound_get_loop_end(mus_tex) - 2)
+	
 }
 
 

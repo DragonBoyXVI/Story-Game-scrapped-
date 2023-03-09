@@ -189,3 +189,15 @@ _eff_bit.bypass = true
 audio_bus_main.effects[4] = _eff_bit
 
 #endregion audio effects
+#region set music loops										tempo * (bars * beats)
+
+audio_sound_loop_start(		snd_battle_test,				time_bpm_to_seconds(155) * (9 * 3))
+audio_sound_loop_end(		snd_battle_test,				time_bpm_to_seconds(155) * (111 * 3))
+
+audio_sound_loop_start(		snd_battle_test_drac,			time_bpm_to_seconds(155) * (9 * 3))
+audio_sound_loop_end(		snd_battle_test_drac,			time_bpm_to_seconds(155) * (111 * 3))
+
+audio_sound_loop_start(		snd_over_test,					time_bpm_to_seconds(123) * (5 * 4))
+audio_sound_loop_end(		snd_over_test,					time_bpm_to_seconds(123) * (25 * 4))
+
+#endregion set music loops

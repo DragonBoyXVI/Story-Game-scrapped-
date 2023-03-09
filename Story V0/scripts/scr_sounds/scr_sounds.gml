@@ -43,7 +43,7 @@ function fun_play_over_mus(_mus = -1, _time_sec = 0.5, _pos = 0) {
 		
 		if (_mus != undefined and _mus != -1) then {
 			
-			mus = audio_play_sound(_mus, 2, false, 0, _pos)
+			mus = audio_play_sound(_mus, 2, true, 0, _pos)
 			audio_sound_gain(mus, SETTINGS_GAIN_MUS, _time_sec * 1000)
 			
 		} else {
@@ -77,7 +77,7 @@ function fun_play_tex_music(_mus = -1, _time_sec = 0.5) {
 		
 		if (_mus != undefined and _mus != -1) then {
 			
-			mus_tex = audio_play_sound(_mus, 2, false, 0, audio_sound_get_track_position(mus))
+			mus_tex = audio_play_sound(_mus, 2, true, 0, audio_sound_get_track_position(mus))
 			audio_sound_gain(mus_tex, SETTINGS_GAIN_MUS, _time_sec * 1000)
 			
 		}

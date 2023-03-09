@@ -165,7 +165,9 @@ switch(state) {
 	
 	if (mouse_right_released) then {
 		
-		state = STATES.PLAY
+		sprite_index = face_right ? spr_over_drac_needle_fire_right : spr_over_drac_needle_fire_left
+		image_index = 0
+		state = STATES.SPEC
 		
 	}
 	
