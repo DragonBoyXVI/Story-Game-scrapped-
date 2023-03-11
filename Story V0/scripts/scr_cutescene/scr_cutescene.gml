@@ -230,3 +230,99 @@ function fun_trans_start(_target, _innie, _outie) {
  }
  
  #endregion change rooms
+ #region this is where all the textbox stuff is
+ 
+ 
+ 
+ #endregion this is where all the textbox stuff is
+ #region data based on player
+ 
+ function fun_player_colour(_player = GAME_CURPLAYER) {
+	
+	switch(_player) {
+		
+		case PLAYERS.DRAC:	return C_DRAC
+		case PLAYERS.KATE:	return C_KATE
+		case PLAYERS.MUD:	return C_MUD
+		case PLAYERS.FEVIR:	return C_FEV
+		case PLAYERS.JAB:	return C_JAB
+		
+	}
+	
+ }
+ 
+ function fun_player_textbox(_player = GAME_CURPLAYER) {
+	
+	switch(_player) {
+		
+		case PLAYERS.DRAC: return	spr_textbox_drac
+		case PLAYERS.KATE: return	spr_textbox_kate
+		case PLAYERS.MUD: return	spr_textbox_mud
+		case PLAYERS.FEVIR: return	spr_textbox_fevir
+		case PLAYERS.JAB: return	spr_textbox_jab
+		
+	}
+	
+ }
+ 
+ function fun_player_font(_player = GAME_CURPLAYER) {
+	
+	switch(_player) {
+		
+		case PLAYERS.DRAC: return	FNT_DRAC
+		case PLAYERS.KATE: return	FNT_DRAC
+		case PLAYERS.MUD: return	FNT_DRAC
+		case PLAYERS.FEVIR: return	FNT_DRAC
+		case PLAYERS.JAB: return	FNT_DRAC
+		
+	}
+	
+ }
+ 
+ #endregion data based on player
+ #region greek
+ 
+ function fun_level_to_glyph(_lvl) {
+	
+	return string_char_at("-αβγδεζηθικλμνξoπρστυφχψΩ!", _lvl)
+	
+ }
+ 
+function fun_level_to_title(_lvl) {
+	
+	var _titles = [
+		"Hatchling",
+		"Alpha",
+		"Beta",
+		"Gamma",
+		"Delta",
+		"Epsilon",
+		"Zeta",
+		"Eta",
+		"Theta",
+		"Iota",
+		"Kappa",
+		"Lambda",
+		"Mu",
+		"Nu",
+		"Xi",
+		"Omicron",
+		"Pi",
+		"Rho",
+		"Sigma",
+		"Tau",
+		"Upsilon",
+		"Phi",
+		"Chi",
+		"Psi",
+		"Omega",
+		"Over",
+	]
+	
+	return _lvl > 25 ? "???" : _titles[_lvl]
+	
+}
+ 
+ //show_message(string_length("-αβγδεζηθικλμνξoπρστυφχψΩ!"))
+ 
+ #endregion greek

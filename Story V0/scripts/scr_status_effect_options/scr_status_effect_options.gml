@@ -7,6 +7,10 @@
 #macro STATUS_BURN_HP (0.75)
 #macro STATUS_BURN_HEAT (0.45)
 
+#macro STATUS_REGEN_SPEED (1)
+
+
+
 /*
 var _file_name = get_open_filename("text file|*.txt", "")
 

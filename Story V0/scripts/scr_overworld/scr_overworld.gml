@@ -131,4 +131,13 @@ function fun_check_for_interact(_me, _touched) { //run inside me
 	
 }
 
-#region check for interacts
+#endregion check for interacts
+#region level ups
+
+function fun_get_exp(_lvl) {
+	
+	return power(2, _lvl)
+	
+}
+
+#endregion level ups

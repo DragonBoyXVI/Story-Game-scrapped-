@@ -62,6 +62,9 @@ color_changed = false
 can_pause = true
 key_pause_press = ord("P")
 has_menu = true
+change_mods = true
+
+
 
 #endregion pausing
 #region music

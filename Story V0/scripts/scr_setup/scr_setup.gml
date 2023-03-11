@@ -17,6 +17,8 @@ global.yscale = 1
 
 global.game = {
 	
+	save_path: "",
+	
 	rng: [], //array_create(100, -1),
 	rng_pos: 0,
 	
@@ -34,6 +36,10 @@ global.game = {
 	mods: {
 		
 		rng_table: true,
+		exp_mult: 1,
+		foe_scale: 1,
+		
+		mod_mods: true,
 		
 	},
 	
@@ -41,6 +47,10 @@ global.game = {
 #macro GAME_CURPLAYER (global.game.cur_player)
 
 #macro GAMEMOD_RNG_TABLE (global.game.mods.rng_table)
+#macro GAMEMOD_EXP (global.game.mods.exp_mult)
+#macro GAMEMOD_ENEMY_SCALE (global.game.mods.foe_scale)
+
+#macro GAMEMOD_MODMOD (global.game.mods.mod_mods)
 
 global.settings = {
 	
@@ -48,12 +58,18 @@ global.settings = {
 	
 	draw_rounded: false,
 	
+	show_mouse: true,
+	
 	gain_music: 0.75,//1,
 	gain_sfx: 1,
 	
 }
 #macro SETTINGS_SHADER (global.settings.shader_on)
 #macro SETTINGS_DRAW_ROUND (global.settings.draw_rounded)
+
+#macro SETTINGS_DRAW_MOUSE (global.settings.show_mouse)
+
+
 #macro SETTINGS_GAIN_MUS (global.settings.gain_music)
 #macro SETTINGS_GAIN_SFX (global.settings.gain_sfx)
 
@@ -201,3 +217,62 @@ audio_sound_loop_start(		snd_over_test,					time_bpm_to_seconds(123) * (5 * 4))
 audio_sound_loop_end(		snd_over_test,					time_bpm_to_seconds(123) * (25 * 4))
 
 #endregion set music loops
+#region colors and fonts
+
+function fun_string_reverse(_string) {
+	
+	var _new = ""
+	
+	var i = string_length(_string)
+	repeat(i) {
+		
+		_new += string_char_at(_string, i)
+		
+		i--
+		
+	}
+	
+	return _new
+	
+}
+
+var _mapstring = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()`-=[];',./\\~_+{}:\"<>?|αβγδεζηθικλμνξπρστυφχψΩ"
+// use regular o for omicron
+
+_mapstring = fun_string_reverse(_mapstring)
+
+global.fnt_drac = font_add_sprite_ext(spr_drac_font, _mapstring, true, 2)
+#macro FNT_DRAC (global.fnt_drac)
+
+#macro FNT_KATE (-1)
+
+#macro FNT_MUD (-1)
+
+#macro FNT_FEVIR (-1)
+
+#macro FNT_JAB (-1)
+
+
+global.c_drac = make_color_rgb(39,141,35)
+#macro C_DRAC (global.c_drac)
+
+global.c_mud = make_color_rgb(52,45,16)
+#macro C_MUD (global.c_mud)
+
+global.c_kate = make_color_rgb(0,155,255)
+#macro C_KATE (global.c_kate)
+
+global.c_fevir = make_color_rgb(255,155,0)
+#macro C_FEV (global.c_fevir)
+
+global.c_jab = make_color_rgb(155,155,155)
+#macro C_JAB (global.c_jab)
+
+
+global.c_poison = make_colour_rgb(93, 18, 42)
+#macro C_POISON (global.c_poison)
+
+global.c_life = make_colour_rgb(4, 100, 26)
+#macro C_LIFE (global.c_life)
+
+#endregion colors and fonts

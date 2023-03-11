@@ -1,4 +1,6 @@
 
+instance_deactivate_object(obj_game_pauser)
+
 view_enabled = true
 view_visible[0] = true
 camera_set_view_target(VIEW, id)

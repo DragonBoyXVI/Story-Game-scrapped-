@@ -62,6 +62,8 @@ if (key_pause or keyboard_check_pressed(key_unpause)) then {
 		buffer_get_surface(pause_buffer, pause_surface, 0)
 		
 		paused = true
+		page_update = true
+		page = 0
 		instance_deactivate_all(true)
 		
 	}
