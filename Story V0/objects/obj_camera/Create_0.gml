@@ -52,8 +52,8 @@ floor_layer_asset = -1
 shader_uniform_color = shader_get_uniform(shd_replace_blackwhite, "new_color")
 shader_uniform_percent = shader_get_uniform(shd_replace_blackwhite, "blend_per")
 
-blend_amt = 0
-blend_color = [0, 0, 0]
+blend_amt = 1
+blend_color = [1, 0, 0]
 color_changed = false
 
 #endregion Shader
