@@ -1,29 +1,78 @@
 
 page_prev = -1
 page = 0
+page_number = 0
 charpos = 0
+charfloor = 0
 charlength = 0
 pos = 0
+
+typing = false
+
+key_up = false
+key_down = false
+key_enter = false
+
+soundpos = 0
+
+charwait = 0
 
 #region arrays
 
 text = []
 text_color = []
 
+font = []
+
 header = []
 header_color = []
 
-options = []
+head_x = 0
+head_y = 0
+head_w = 0
+head_h = 32
+
+options = [] //will be an array if this has ops, [text, new scene id, otherwise -1]
+option_color_sele = []
+
+opts_length = 0
+
+opts_x = 0
+opts_y = 0
+opts_w = 0
+opts_h = 0
 
 bust_talk = []
-bust_idle = []
+bust_idle = [] //checked for when using busts
 
-bust_speed = 0
+bust_side_right = []
+bust_face_right = []
+
+bust_xscale = 1
+
+sound = []
+sound_once = []
+sound_played = false
+
+box_sprite = []
+
+spd = []
+
+bust_speed_idle = 0
+bust_speed_talk = 0
+
 bust_image = 0
+
+bust_loop_idle = 0
+bust_loop_talk = 0
+
+sep = 32
+bord = 16
+bord2 = 32
 
 box_x = 0
 box_y = 0
 box_w = 0
-box_h = 0
+box_h = 32
 
 #endregion arrays

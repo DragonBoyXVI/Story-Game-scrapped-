@@ -20,6 +20,7 @@
     {"name":"test","order":1,"path":"folders/Sounds/music/test.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Drac","order":1,"path":"folders/Sprites/Drac.yy",},
+    {"name":"dialogue","order":4,"path":"folders/Sprites/Drac/dialogue.yy",},
     {"name":"overworld","order":1,"path":"folders/Sprites/Drac/overworld.yy",},
     {"name":"fonts","order":10,"path":"folders/Sprites/fonts.yy",},
     {"name":"textboxes","order":9,"path":"folders/Sprites/textboxes.yy",},
@@ -100,5 +101,6 @@
     {"name":"spr_over_drac_idle_right","order":2,"path":"sprites/spr_over_drac_idle_right/spr_over_drac_idle_right.yy",},
     {"name":"snd_wood_step_clawed_1","order":13,"path":"sounds/snd_wood_step_clawed_1/snd_wood_step_clawed_1.yy",},
     {"name":"obj_player_interact","order":5,"path":"objects/obj_player_interact/obj_player_interact.yy",},
+    {"name":"spr_drac_bust_left_nute_test","order":1,"path":"sprites/spr_drac_bust_left_nute_test/spr_drac_bust_left_nute_test.yy",},
   ],
 }
