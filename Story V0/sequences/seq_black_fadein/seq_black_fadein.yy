@@ -28,8 +28,8 @@
     ],
   },
   "parent": {
-    "name": "trans",
-    "path": "folders/Sequences/trans.yy",
+    "name": "fades",
+    "path": "folders/Sequences/trans/fades.yy",
   },
   "playback": 0,
   "playbackSpeed": 60.0,

@@ -10,33 +10,39 @@ if (typing) then {
 		charpos += spd[page]
 		charfloor = floor(charpos)
 		
-		typing = (charfloor < charlength)
-		
-		if (sound_once[page]) then {
-			
-			if (not sound_played) then {
-				audio_play_sound(sound[page], 3, false, SETTINGS_GAIN_SFX)
-			}
-			
-		} else {
-			
-			if (soundpos < charfloor) then {
-				
-				soundpos = charfloor
-				audio_stop_sound(sound[page])
-				audio_play_sound(sound[page], 3, false, SETTINGS_GAIN_SFX * random_range(0.9, 1.1), 0, random_range(0.9, 1.1))
-				
-			}
-			
-		}
-		
 		var _curchar = string_char_at(text[page], charfloor)
+		
 		if (_curchar == "."
 		or _curchar == ","
 		or _curchar == "+"
 		or _curchar == "-"
 		or _curchar == "?") then {
 			charwait = spd[page]*5
+		}
+		
+		typing = (charfloor < charlength)
+		
+		if (sound[page] != -1) then {
+			
+			if (sound_once[page]) then {
+				
+				if (not sound_played) then {
+					audio_play_sound(sound[page], 3, false, SETTINGS_GAIN_SFX)
+					sound_played = true
+				}
+				
+			} else {
+				
+				if (soundpos < charfloor) then {
+					
+					soundpos = charfloor
+					audio_stop_sound(sound[page])
+					audio_play_sound(sound[page], 3, false, SETTINGS_GAIN_SFX * random_range(0.9, 1.1), 0, random_range(0.9, 1.1))
+					
+				}
+				
+			}
+			
 		}
 		
 	}

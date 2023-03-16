@@ -6,8 +6,6 @@ if (instance_number(obj_camera) > 1) then {
 	
 }
 
-show_debug_overlay(true)
-
 fun_init_rng() //test
 
 state = STATES.FOLLOW_OBJ

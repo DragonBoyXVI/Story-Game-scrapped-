@@ -28,8 +28,8 @@
     ],
   },
   "parent": {
-    "name": "trans",
-    "path": "folders/Sequences/trans.yy",
+    "name": "diag slides",
+    "path": "folders/Sequences/trans/diag slides.yy",
   },
   "playback": 0,
   "playbackSpeed": 60.0,

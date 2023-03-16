@@ -191,14 +191,17 @@ function fun_trans_start(_target, _innie, _outie) {
 	} else return false
 	
  }
- 
- function fun_trans_goto() {
+
+function fun_trans_goto() {
+	
+	//if not global.in_trans then exit
+	
 	layer_sequence_destroy(self.elementID)
 	layer_destroy("trans")
 	room_goto(global.stored_room)
  }
- 
- function fun_trans_done() {
+
+function fun_trans_done() {
 	
 	layer_sequence_destroy(self.elementID)
 	global.in_trans = false
@@ -208,8 +211,8 @@ function fun_trans_start(_target, _innie, _outie) {
 	with obj_cutscene_manager fun_cut_end()
 	
  }
- 
- function fun_cut_change_room(_room, _playerx, _playery, _in, _out, _battle_id = "") {
+
+function fun_cut_change_room(_room, _playerx, _playery, _in, _out) {
 	
 	if not global.in_trans then {
 		
@@ -230,7 +233,46 @@ function fun_trans_start(_target, _innie, _outie) {
 	}
 	
  }
- 
+
+/// BATTLE STARTING SHIT HERRE
+
+function fun_cut_make_battle(_battle_id, _battle_room, _in, _out) {
+	
+	if not global.in_trans then {
+		
+		fun_trans_start(_battle_room, _in, _out)
+		stored_id = room
+		room_persistent = true
+		
+		global.battle_before_room = room
+		global.battle_id = _battle_id
+		
+	}
+	
+	if (stored_id != room) then {
+		
+		obj_player.x = -1000
+		obj_player.y = -1000
+		obj_player.state = -1
+		
+		obj_camera.x = room_width/2
+		obj_camera.y = room_height/2
+		
+		obj_camera.state = STATES.FOLLOW_POS
+		obj_camera.follow_offy = 0
+		obj_camera.follow_offx = 0
+		
+		obj_camera.follow_x = room_width/2
+		obj_camera.follow_y = room_height/2
+		
+		obj_camera.lens_tween = 2
+		
+		if !instance_exists(obj_battle_manager) then instance_create_depth(0, 0, 0, obj_battle_manager)
+		
+	}
+	
+}
+
  #endregion change rooms
  #region this is where all the textbox stuff is
 
@@ -250,26 +292,26 @@ function fun_cut_textbox(_textid) {//make cutscene textbox
 	
 }
 
-function fun_text(_text, _char = -1) {
+function fun_text(_text, _color = c_black, _char = -1) {
 		
 	text[page_number] = _text
-	text_color[page_number] = c_black
+	text_color[page_number] = _color
 	
 	font[page_number] = fun_player_font()
 	
-	header[page_number] = "ME"//-1
-	header_color[page_number] = c_black
+	header[page_number] = -1
+	header_color[page_number] = _color
 	
 	options[page_number] = -1 //will be an array if this has ops, [text, new scene id, otherwise -1]
 	option_color_sele[page_number] = fun_player_colour()
 	
-	bust_talk[page_number] = spr_drac_bust_left_nute_test //-1
-	bust_idle[page_number] = spr_drac_bust_left_nute_idle_test //-1 //checked for when using busts
+	bust_talk[page_number] = -1
+	bust_idle[page_number] = -1 //checked for when using busts
 	
 	bust_side_right[page_number] = false
-	bust_face_right[page_number] = true
+	bust_face_right[page_number] = false
 	
-	sound[page_number] = snd_metal_hollow_clawed_step_0
+	sound[page_number] = -1 //snd_metal_hollow_clawed_step_0
 	sound_once[page_number] = false
 	
 	box_sprite[page_number] = fun_player_textbox()
@@ -283,6 +325,65 @@ function fun_text(_text, _char = -1) {
 	}
 	
 	page_number++
+	
+}
+
+function fun_text_data_deets(_spd, _box_sprite, _font, _farback = -1) {
+	
+	var i = 0
+	repeat(_farback) {
+		
+		spd[page_number - i] = _spd
+		box_sprite[page_number - i] = _box_sprite
+		font[page_number - i] = _font
+		
+		i++
+		
+	}
+	
+}
+
+function fun_text_data_header(_text, _color, _farback = 1) {
+	
+	var i = 1
+	repeat(_farback) {
+		
+		header[page_number - i] = _text
+		header_color[page_number - i] = _color
+		
+		i++
+		
+	}
+	
+}
+
+function fun_text_data_bust(_talk, _idle, _faces_right, _on_side_right, _farback = 1) {
+	
+	var i = 1
+	repeat(_farback) {
+		
+		bust_talk[page_number - i] = _talk
+		bust_idle[page_number - i] = _idle
+		bust_face_right[page_number - i] = _faces_right
+		bust_side_right[page_number - i] = _on_side_right
+		
+		i++
+		
+	}
+	
+}
+
+function fun_text_data_sound(_sound, _once = false, _farback = 1) {
+	
+	var i = 1
+	repeat(_farback) {
+		
+		sound[page_number - i] = _sound
+		sound_once[page_number - i] = _once
+		
+		i++
+		
+	}
 	
 }
 
@@ -317,6 +418,7 @@ function fun_gametext(_textid) {
 		fun_text("YEEEEEEEEEEEEEEEEEEE HEHHEHEHEHEHE. EHEHHEHEHE EHHEHEHEHEHE KKZKKZKZKZKZKKZKZ")
 		fun_text("Okie thank you naow answer this")
 		fun_text("do you liek gaming?")
+			fun_text_data_deets(0.5, spr_pix_hollow, -1, 2)
 			fun_text_option("Yes i love gayms", "test true")
 			fun_text_option("No i'm homophonic", "test false")
 			fun_text_option("take me to the other room", "test trans")
@@ -431,11 +533,11 @@ function fun_option_results(_textid) {
  }
  
  #endregion data based on player
- #region greek
+ #region greek and not greek
  
- function fun_level_to_glyph(_lvl) {
+function fun_level_to_glyph(_lvl) {
 	
-	return string_char_at("-αβγδεζηθικλμνξoπρστυφχψΩ!", _lvl)
+	return string_char_at("-αβγδεζηθικλμνξoπρστυφχψΩ!", _lvl+1)
 	
  }
  
@@ -467,13 +569,19 @@ function fun_level_to_title(_lvl) {
 		"Chi",
 		"Psi",
 		"Omega",
-		"Over",
+		"Giga",
 	]
 	
 	return _lvl > 25 ? "???" : _titles[_lvl]
 	
 }
- 
- //show_message(string_length("-αβγδεζηθικλμνξoπρστυφχψΩ!"))
- 
- #endregion greek
+
+function fun_elem_to_string(_elem, _fuck_you_dont_change_this = ["Blunt", "Fire", "Ice", "Poison", "Life", "Elec", "Rad", "Decay"]) {
+	
+	return _fuck_you_dont_change_this[_elem]
+	
+}
+
+//show_message(string_length("-αβγδεζηθικλμνξoπρστυφχψΩ!"))
+
+#endregion greek

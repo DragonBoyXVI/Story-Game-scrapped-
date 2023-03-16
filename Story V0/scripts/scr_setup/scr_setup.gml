@@ -8,9 +8,11 @@ global.water_height = 32
 global.stored_coords = [-1, -1]
 global.stored_room = -1
 
-global.battle_stored_room = -1
 global.in_trans = false
 global.stored_trans = -1
+
+global.battle_before_room = -1
+global.battle_id = undefined
 
 global.yscale = 1
 #macro YSCALE (global.yscale)
@@ -28,6 +30,23 @@ global.game = {
 	
 	#endregion flags
 	#region player data
+	
+	data_drac: {
+		
+		has_me: true,
+		
+		hp: 8,
+		hp_max: 8,
+		
+		stam: 10,
+		stam_regen: 15,
+		
+		spd: 8,
+		
+		str: 1,
+		mag: 6,
+		
+	},
 	
 	cur_player : 0,
 	
@@ -90,11 +109,15 @@ enum PLAYERS {
 
 enum BEASTS {
 	
+	//players
 	DRAC,
 	KATE,
 	MUD,
 	FEVIR,
 	JAB,
+	
+	//test
+	SHRUB,
 	
 	ALLBEASTS,
 	
