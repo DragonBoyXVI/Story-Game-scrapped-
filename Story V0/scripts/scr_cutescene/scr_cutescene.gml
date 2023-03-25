@@ -1,4 +1,4 @@
- #region setup
+#region setup
  
  function fun_cut_end() {
 	
@@ -20,7 +20,7 @@
  }
  
  #endregion setup
- #region move an object
+#region move an object
  
  function fun_cut_object_move_tween(_id, _x, _y, _spd, _relative) {
 	
@@ -105,7 +105,7 @@
  }
  
  #endregion move an object
- #region time
+#region time
  
  function fun_cut_wait(_sec) {
 	
@@ -122,7 +122,7 @@
  }
  
  #endregion time
- #region change rooms
+#region change rooms
 //thank you random citizen
 function fun_layer_surface_set() {
 	
@@ -212,6 +212,26 @@ function fun_trans_done() {
 	
  }
 
+function fun_create_anim(_aim) {
+	
+	if layer_exists(ANIM_LAYER_NAME) then layer_destroy(ANIM_LAYER_NAME)
+	var _layer = layer_create(-999, ANIM_LAYER_NAME)
+	var _seq = layer_sequence_create(_layer, 0, 0, _aim)
+	
+	layer_script_begin(_layer, fun_layer_surface_set)
+	layer_script_end(_layer, fun_layer_surface_unset)
+	
+	return _seq
+	
+}
+
+function fun_kill_anim() {
+	
+	layer_sequence_destroy(self.elementID)
+	layer_destroy(ANIM_LAYER_NAME)
+	
+}
+
 function fun_cut_change_room(_room, _playerx, _playery, _in, _out) {
 	
 	if not global.in_trans then {
@@ -274,7 +294,7 @@ function fun_cut_make_battle(_battle_id, _battle_room, _in, _out) {
 }
 
  #endregion change rooms
- #region this is where all the textbox stuff is
+#region this is where all the textbox stuff is
 
 function fun_cut_textbox(_textid) {//make cutscene textbox
 	
@@ -488,7 +508,24 @@ function fun_option_results(_textid) {
 }
 
  #endregion this is where all the textbox stuff is
- #region data based on player
+#region music
+
+function fun_cut_over_mus(_mus = -1, _time_sec = 0, _pos = 0) {
+	
+	fun_play_over_mus(_mus, _time_sec, _pos)
+	fun_cut_end()
+	
+}
+
+function fun_cut_tex_mus(_mus = -1, _time_sec = 0) {
+	
+	fun_play_tex_music(_mus, _time_sec)
+	fun_cut_end()
+	
+}
+
+#endregion music
+#region data based on player
  
  function fun_player_colour(_player = GAME_CURPLAYER) {
 	
@@ -533,7 +570,7 @@ function fun_option_results(_textid) {
  }
  
  #endregion data based on player
- #region greek and not greek
+#region greek and not greek
  
 function fun_level_to_glyph(_lvl) {
 	

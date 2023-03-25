@@ -1,3 +1,5 @@
+
+//draw_text(0, 0, room_persistent)
 /*
 
 draw_text(0, 0, string("Yscale: {0}", YSCALE))

@@ -182,7 +182,7 @@ switch(state) {
 if (water_layer_elem != -1) then {
 	
 	var _now = in_water
-	in_water = tilemap_get_at_pixel(water_layer_elem, x, y-global.water_height) == 1
+	in_water = (tilemap_get_at_pixel(water_layer_elem, x, y) == 1 or tilemap_get_at_pixel(water_layer_elem, x, y-global.water_height) == 1)
 	
 	//audio_bus_main.effects[4].bypass = not in_water
 	

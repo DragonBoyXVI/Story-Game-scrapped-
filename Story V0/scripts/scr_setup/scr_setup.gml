@@ -1,6 +1,8 @@
 
 randomize()
 
+#macro ANIM_LAYER_NAME ("anim")
+
 #region game data and macs
 
 global.water_height = 32
@@ -13,6 +15,8 @@ global.stored_trans = -1
 
 global.battle_before_room = -1
 global.battle_id = undefined
+
+global.enemy_level = [0, 3]
 
 global.yscale = 1
 #macro YSCALE (global.yscale)
@@ -32,6 +36,12 @@ global.game = {
 	#region player data
 	
 	data_drac: {
+		
+		exp_points: 0,
+		exp_next_level: fun_get_exp(1),
+		level: 0,
+		
+		rads: 0,
 		
 		has_me: true,
 		
@@ -58,16 +68,23 @@ global.game = {
 		exp_mult: 1,
 		foe_scale: 1,
 		
+		active_combat: true,
+		active_div: 5,
+		
 		mod_mods: true,
 		
 	},
 	
 }
+#macro GAME (global.game)
 #macro GAME_CURPLAYER (global.game.cur_player)
 
 #macro GAMEMOD_RNG_TABLE (global.game.mods.rng_table)
 #macro GAMEMOD_EXP (global.game.mods.exp_mult)
 #macro GAMEMOD_ENEMY_SCALE (global.game.mods.foe_scale)
+
+#macro GAMEMOD_ACTIVE_COMBAT (global.game.mods.active_combat)
+#macro GAMEMOD_ACTIVE_DIV (global.game.mods.active_div)
 
 #macro GAMEMOD_MODMOD (global.game.mods.mod_mods)
 
@@ -163,6 +180,23 @@ enum ELEMENT {
 	RAD,
 	
 	GARBO,
+	
+}
+
+enum MOVES {
+	
+	//basic
+	MELEE_ATK,
+	RANGE_ATK,
+	REST,
+	DEFEND,
+	USE_ITEM,
+	
+	//drac
+	NEEDLE,
+	HEAL,
+	DUNDER,
+	
 	
 }
 

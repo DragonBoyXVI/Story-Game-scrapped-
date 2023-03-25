@@ -1,18 +1,46 @@
 
+highlight_pix = 6
+highlight_me = true
+
 #region stats
+
+ignore_me = false
+
+level = 0
+
+ap = 0
+ap_speed = 2
+
+rads = 0
+immune_rads = false
 
 stat_hp = 1
 stat_hp_max = 1
 stat_hp_max_real = 1
 
+mod_hp = 0
+immune_mod_hp = false
+
 stat_stam = 1
 stat_stam_max = 1
 stat_stam_regen = 1
 
+mod_stam = 0
+immune_mod_stam = false
+
 stat_spd = 1
+stat_swim_spd = 1
+
+mod_spd = 0
+immune_mod_spd = false
 
 stat_str = 1
 stat_mag = 1
+
+mod_str = 0
+immune_mod_str = false
+mod_mag = 0
+immune_mod_mag = false
 
 stat_arm_base = 1
 
@@ -57,6 +85,17 @@ immune_sleep = false
 rebooting = false
 immune_reboot = true
 
+taunt = 0
+immune_taunt = false
+
+caut = 0
+immune_caut = false
+
+ap_instant = 0
+mod_ap = 0
+
+defending = 0
+
 #endregion define status effects
 #region racial traits
 
@@ -66,8 +105,11 @@ name = string("No name {0}", instance_number(object_index))
 enemy_team = false //yay i love using the not word =DDDDDDFDSD
 ai_ctrl = false
 
+selected_move = undefined
+
 is_human = false
 is_dragon = false
+is_naga = false
 is_kobold = false
 is_dog = false
 is_cat = false
@@ -86,6 +128,10 @@ has_gun = false
 gun_clip = 0
 gun_clip_max = 0
 
+moveset_basic = []  //[id, name, desc, sprite]
+moveset_skills = []	//[id, name, desc, sprite]
+pocket_items = []	//[[use item move, item id], name, desc]
+
 #endregion racial traits
 #region data structures
 
@@ -99,7 +145,27 @@ struct_sprites = {
 	hurt_blunt: spr_test_hurt_blunt,
 	
 	attack_basic: spr_test_attack,
+	special_anim: spr_pix,
 	
 }
 
 #endregion data structures
+#region traits
+
+uni_toxic_blood = false
+
+#endregion traits
+#region water
+
+var _layer = -1
+
+if (layer_exists("Water")) then _layer = layer_get_id("Water")
+if (layer_exists("water")) then _layer = layer_get_id("water")
+
+if (_layer != -1) then {
+	
+	in_water = tilemap_get_at_pixel(layer_tilemap_get_id(_layer), x, y)
+	
+}
+
+#endregion water

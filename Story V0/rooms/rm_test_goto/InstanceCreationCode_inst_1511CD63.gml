@@ -4,6 +4,7 @@ is_bullet_trigger = true
 is_interact_trigger = true
 
 scene_info = [
+	[fun_cut_over_mus, snd_over_test, 1],
 	[fun_cut_change_room, rm_test, 500, 500, seq_battle_test_in, seq_black_diag_slideout],
 ]
 

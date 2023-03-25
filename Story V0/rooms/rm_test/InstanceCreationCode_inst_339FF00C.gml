@@ -5,6 +5,7 @@ is_interact_trigger = true
 bullet_elem = ELEMENT.GARBO
 
 scene_info = [
+	[fun_cut_over_mus, snd_battle_test, 1],
 	[fun_cut_change_room, rm_test_goto, 500, 500, seq_black_fast_fadein, seq_black_fast_fadeout],
 ]
 
