@@ -128,8 +128,8 @@ has_gun = false
 gun_clip = 0
 gun_clip_max = 0
 
-moveset_basic = []  //[id, name, desc, sprite]
-moveset_skills = []	//[id, name, desc, sprite]
+moveset_basic = []  //[id, name]
+moveset_skills = []	//[id, name]
 pocket_items = []	//[[use item move, item id], name, desc]
 
 #endregion racial traits
