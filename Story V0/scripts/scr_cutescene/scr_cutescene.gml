@@ -338,6 +338,14 @@ function fun_text(_text, _color = c_black, _char = -1) {
 	
 	spd[page_number] = 1
 	
+	//effects
+	
+	line_break_pos[0][page_number] = 9999
+	line_break_num[page_number] = 0
+	line_break_off[page_number] = 0
+	
+	//effects
+	
 	switch(_char) {
 		
 		default: break

@@ -1,7 +1,95 @@
 
 draw_set_font(font[page])
 
-//update
+if (do_setup) then {
+	do_setup = false
+	
+	var _char = 0, _page = 0
+	repeat(page_number) {//go over all pages
+		
+		//get length of current line
+		text_length[_page] = string_length(text[_page])
+		
+		repeat(text_length[_page]) {//go over all page glyphs
+			
+			var _tchar = _char+1
+			
+			//store each char in an array
+			char[_page][_char] = string_char_at(text[_page], _tchar)
+			
+			//current line width
+			var _text_to_char = string_copy(text[_page], 1, _tchar)
+			var _cur_text_w = string_width(_text_to_char) - string_width(char[_page][_char])
+			
+			//get last free space
+			if (char[_page][_char] == " ") then {
+				
+				last_free_space = _tchar+1
+				
+			}
+			
+			//get line breaks
+			if (_cur_text_w - line_break_off[_page] > box_w) then {//if the current width is longer than the text box
+				
+				line_break_pos[line_break_num[_page]][_page] = last_free_space //set line break for this page
+				line_break_num[_page]++ //increase break count
+				var _text_to_last_free_space = string_copy(text[_page], 1, last_free_space)
+				var _last_free_space_char = string_char_at(text[_page], last_free_space)
+				line_break_off[_page] = string_width(_text_to_last_free_space) - string_width(_last_free_space_char)
+				
+			}
+			
+			_char++
+			
+		}
+		
+		//get character x and y
+		_char = 0
+		repeat(text_length[_page]) {
+			
+			var _tchar = _char+1
+			var _text_x = box_x
+			var _text_y = box_y
+			
+			//current line width
+			var _text_to_char = string_copy(text[_page], 1, _tchar)
+			var _cur_text_w = string_width(_text_to_char) - string_width(char[_page][_char])
+			var _text_line = 0
+			
+			//do line breaks
+			var _lb = 0
+			repeat(line_break_num[_page]) {
+				
+				//is the current char after a line break
+				if (_tchar >= line_break_pos[_lb][_page]) then {
+					
+					var _string_copy = string_copy(text[_page], line_break_pos[_lb][_page], _char - line_break_pos[_lb][_page])
+					_cur_text_w = string_width(_string_copy)
+					
+					//recone the line the char belongs to
+					_text_line = _lb+1
+					
+				}
+				
+				_lb++
+				
+			}
+			
+			_char++
+			
+		}
+		
+		_page++
+		_char = 0
+		
+	}
+	
+}
+
+draw_set_font(-1)
+
+/*
+//update is outdated, look at setup
 if (page_prev != page) then {
 	
 	pos = 0
