@@ -53,10 +53,10 @@ option_color_sele = []
 
 opts_length = 0
 
-opts_x = 0
-opts_y = 0
-opts_w = 0
-opts_h = 0
+opts_x = []//0
+opts_y = []//0
+opts_w = []//0
+opts_h = []//0
 
 bust_talk = []
 bust_idle = [] //checked for when using busts
@@ -64,7 +64,7 @@ bust_idle = [] //checked for when using busts
 bust_side_right = []
 bust_face_right = []
 
-bust_xscale = 1
+bust_xscale = []
 
 sound = []
 sound_once = []
@@ -74,13 +74,13 @@ box_sprite = []
 
 spd = []
 
-bust_speed_idle = 0
-bust_speed_talk = 0
+bust_speed_idle = []
+bust_speed_talk = []
 
 bust_image = 0
 
-bust_loop_idle = 0
-bust_loop_talk = 0
+bust_loop_idle = []
+bust_loop_talk = []
 
 sep = 32
 bord = 16

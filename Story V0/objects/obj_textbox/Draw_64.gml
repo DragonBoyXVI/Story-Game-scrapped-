@@ -7,6 +7,51 @@ if (do_setup) then {
 	var _char = 0, _page = 0
 	repeat(page_number) {//go over all pages
 		
+		#region set up the bust and textbox size
+		
+		var _width = display_get_gui_width()
+		var _height = display_get_gui_height()
+		
+		if (bust_idle[_page] == -1) then {//no bust
+			
+			box_x[_page] = _width/6
+			box_y[_page] = _height - 128
+			box_w[_page] = _width - (2 * box_x)
+			box_h[_page] = _height - box_y
+			
+		} else {//set up the busty boys
+			
+			bust_xscale[_page] = bust_face_right[_page] == bust_side_right[_page] ? -1 : 1
+			
+			bust_speed_idle[_page] = sprite_get_speed(bust_idle[_page])/game_get_speed(gamespeed_fps)
+			bust_speed_talk[_page] = sprite_get_speed(bust_talk[_page])/game_get_speed(gamespeed_fps)
+			
+			bust_loop_idle[_page] = sprite_get_number(bust_idle[_page])
+			bust_loop_talk[_page] = sprite_get_number(bust_talk[_page])
+			
+			box_x[_page] = _width/8
+			box_y[_page] = _height - 128
+			box_w[_page] = _width - (2 * box_x)
+			box_h[_page] = _height - box_y
+			
+		}
+		
+		
+		#endregion set up the bust and textbox size
+		#region the header
+		
+		if (header[_page] != -1) then {
+			
+			var _w = string_width(header[page])
+			
+			head_x = (_width/2) - (_w/2)
+			head_w = _w
+			head_y = box_y-48
+			
+		}
+		
+		#endregion the header
+		
 		//get length of current line
 		text_length[_page] = string_length(text[_page])
 		
@@ -66,10 +111,14 @@ if (do_setup) then {
 					var _string_copy = string_copy(text[_page], line_break_pos[_lb][_page], _char - line_break_pos[_lb][_page])
 					_cur_text_w = string_width(_string_copy)
 					
-					//recone the line the char belongs to
+					//record the line the char belongs to
 					_text_line = _lb+1
 					
 				}
+				
+				//add to x y
+				char_x[_char][_page] = _text_x + _cur_text_w
+				char_y[_char][_page] = _text_y + (_text_line * sep)
 				
 				_lb++
 				
@@ -85,6 +134,14 @@ if (do_setup) then {
 	}
 	
 }
+
+if (page_prev != page) then {
+	
+	page_prev = page
+	
+}
+
+//draw shit
 
 draw_set_font(-1)
 
@@ -103,29 +160,6 @@ if (page_prev != page) then {
 	var _height = display_get_gui_height()
 	#region check and set busts
 	
-	if (bust_idle[page] != -1) then {
-		
-		bust_xscale = bust_face_right[page] == bust_side_right[page] ? -1 : 1
-		
-		bust_speed_idle = sprite_get_speed(bust_idle[page])/game_get_speed(gamespeed_fps)
-		bust_speed_talk = sprite_get_speed(bust_talk[page])/game_get_speed(gamespeed_fps)
-		
-		bust_loop_idle = sprite_get_number(bust_idle[page])
-		bust_loop_talk = sprite_get_number(bust_talk[page])
-		
-		box_x = _width/8
-		box_y = _height - 128
-		box_w = _width - (2 * box_x)
-		box_h = _height - box_y
-		
-	} else {
-		
-		box_x = _width/6
-		box_y = _height - 128
-		box_w = _width - (2 * box_x)
-		box_h = _height - box_y
-		
-	}
 	
 	#endregion check and set busts
 	
@@ -136,12 +170,6 @@ if (page_prev != page) then {
 	}
 	
 	if (header[page] != -1) then {
-		
-		var _w = string_width(header[page])
-		
-		head_x = (_width/2) - (_w/2)
-		head_w = _w
-		head_y = box_y-48
 		
 	}
 	
