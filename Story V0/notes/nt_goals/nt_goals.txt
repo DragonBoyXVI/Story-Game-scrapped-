@@ -3,13 +3,12 @@
 --Player that walks around #
 -makes footstep sounds #
 -can collide with tiles and physical walls #
--can interact with objects #
--can shoot bullets that trigger cutscenes #
+-can interact with objects
+-can shoot bullets that trigger cutscenes
 
---Cutscene manager that can move stuff and set variables #
--can make a textbox that manages itself, and waits for it to finish #
--textbox makes sound #
--textbox has effects and draw characters one by one
+--Cutscene manager that can move stuff and set variables
+-can make a textbox that manages itself, and waits for it to finish
+-textbox makes sound
 
 --camera plays music #
 -can fase between tracks #

@@ -1,152 +1,7 @@
 
 draw_set_font(font[page])
 
-if (do_setup) then {
-	do_setup = false
-	
-	var _char = 0, _page = 0
-	repeat(page_number) {//go over all pages
-		
-		#region set up the bust and textbox size
-		
-		var _width = display_get_gui_width()
-		var _height = display_get_gui_height()
-		
-		if (bust_idle[_page] == -1) then {//no bust
-			
-			box_x[_page] = _width/6
-			box_y[_page] = _height - 128
-			box_w[_page] = _width - (2 * box_x)
-			box_h[_page] = _height - box_y
-			
-		} else {//set up the busty boys
-			
-			bust_xscale[_page] = bust_face_right[_page] == bust_side_right[_page] ? -1 : 1
-			
-			bust_speed_idle[_page] = sprite_get_speed(bust_idle[_page])/game_get_speed(gamespeed_fps)
-			bust_speed_talk[_page] = sprite_get_speed(bust_talk[_page])/game_get_speed(gamespeed_fps)
-			
-			bust_loop_idle[_page] = sprite_get_number(bust_idle[_page])
-			bust_loop_talk[_page] = sprite_get_number(bust_talk[_page])
-			
-			box_x[_page] = _width/8
-			box_y[_page] = _height - 128
-			box_w[_page] = _width - (2 * box_x)
-			box_h[_page] = _height - box_y
-			
-		}
-		
-		
-		#endregion set up the bust and textbox size
-		#region the header
-		
-		if (header[_page] != -1) then {
-			
-			var _w = string_width(header[page])
-			
-			head_x = (_width/2) - (_w/2)
-			head_w = _w
-			head_y = box_y-48
-			
-		}
-		
-		#endregion the header
-		
-		//get length of current line
-		text_length[_page] = string_length(text[_page])
-		
-		repeat(text_length[_page]) {//go over all page glyphs
-			
-			var _tchar = _char+1
-			
-			//store each char in an array
-			char[_page][_char] = string_char_at(text[_page], _tchar)
-			
-			//current line width
-			var _text_to_char = string_copy(text[_page], 1, _tchar)
-			var _cur_text_w = string_width(_text_to_char) - string_width(char[_page][_char])
-			
-			//get last free space
-			if (char[_page][_char] == " ") then {
-				
-				last_free_space = _tchar+1
-				
-			}
-			
-			//get line breaks
-			if (_cur_text_w - line_break_off[_page] > box_w) then {//if the current width is longer than the text box
-				
-				line_break_pos[line_break_num[_page]][_page] = last_free_space //set line break for this page
-				line_break_num[_page]++ //increase break count
-				var _text_to_last_free_space = string_copy(text[_page], 1, last_free_space)
-				var _last_free_space_char = string_char_at(text[_page], last_free_space)
-				line_break_off[_page] = string_width(_text_to_last_free_space) - string_width(_last_free_space_char)
-				
-			}
-			
-			_char++
-			
-		}
-		
-		//get character x and y
-		_char = 0
-		repeat(text_length[_page]) {
-			
-			var _tchar = _char+1
-			var _text_x = box_x
-			var _text_y = box_y
-			
-			//current line width
-			var _text_to_char = string_copy(text[_page], 1, _tchar)
-			var _cur_text_w = string_width(_text_to_char) - string_width(char[_page][_char])
-			var _text_line = 0
-			
-			//do line breaks
-			var _lb = 0
-			repeat(line_break_num[_page]) {
-				
-				//is the current char after a line break
-				if (_tchar >= line_break_pos[_lb][_page]) then {
-					
-					var _string_copy = string_copy(text[_page], line_break_pos[_lb][_page], _char - line_break_pos[_lb][_page])
-					_cur_text_w = string_width(_string_copy)
-					
-					//record the line the char belongs to
-					_text_line = _lb+1
-					
-				}
-				
-				//add to x y
-				char_x[_char][_page] = _text_x + _cur_text_w
-				char_y[_char][_page] = _text_y + (_text_line * sep)
-				
-				_lb++
-				
-			}
-			
-			_char++
-			
-		}
-		
-		_page++
-		_char = 0
-		
-	}
-	
-}
-
-if (page_prev != page) then {
-	
-	page_prev = page
-	
-}
-
-//draw shit
-
-draw_set_font(-1)
-
-/*
-//update is outdated, look at setup
+//update
 if (page_prev != page) then {
 	
 	pos = 0
@@ -160,6 +15,29 @@ if (page_prev != page) then {
 	var _height = display_get_gui_height()
 	#region check and set busts
 	
+	if (bust_idle[page] != -1) then {
+		
+		bust_xscale = bust_face_right[page] == bust_side_right[page] ? -1 : 1
+		
+		bust_speed_idle = sprite_get_speed(bust_idle[page])/game_get_speed(gamespeed_fps)
+		bust_speed_talk = sprite_get_speed(bust_talk[page])/game_get_speed(gamespeed_fps)
+		
+		bust_loop_idle = sprite_get_number(bust_idle[page])
+		bust_loop_talk = sprite_get_number(bust_talk[page])
+		
+		box_x = _width/8
+		box_y = _height - 128
+		box_w = _width - (2 * box_x)
+		box_h = _height - box_y
+		
+	} else {
+		
+		box_x = _width/6
+		box_y = _height - 128
+		box_w = _width - (2 * box_x)
+		box_h = _height - box_y
+		
+	}
 	
 	#endregion check and set busts
 	
@@ -170,6 +48,12 @@ if (page_prev != page) then {
 	}
 	
 	if (header[page] != -1) then {
+		
+		var _w = string_width(header[page])
+		
+		head_x = (_width/2) - (_w/2)
+		head_w = _w
+		head_y = box_y-48
 		
 	}
 	
