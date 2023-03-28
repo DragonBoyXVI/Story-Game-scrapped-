@@ -85,19 +85,10 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 		
 		sprite_index = spr_over_drac_needle_hold_right
 		
-		moveset_basic = [//[id, name]
-			[MOVES.MELEE_ATK, "Melee Attack"],
-			[MOVES.DEFEND, "Defend"],
-			[MOVES.REST, "Rest"],
-		]
-		
 		switch(beast_id) {
 			
 			case BEASTS.DRAC:
 			#region
-			
-			moveset_basic[0] = [MOVES.RANGE_ATK, "Throw Pen"]
-			
 			name = "Drac"
 			
 			var _dat = global.game.data_drac

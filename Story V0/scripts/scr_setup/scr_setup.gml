@@ -56,8 +56,6 @@ global.game = {
 		str: 1,
 		mag: 6,
 		
-		items: [],
-		
 	},
 	
 	cur_player : 0,

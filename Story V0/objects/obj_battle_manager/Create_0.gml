@@ -23,6 +23,14 @@ switch(global.battle_id) { //create da battle
 
 battle_id = global.battle_id
 
+key_up = false
+key_down = false
+key_left = false
+key_right = false
+
+key_enter = false
+key_backspace = false
+
 #region cutscene related
 
 time_passed = 0
