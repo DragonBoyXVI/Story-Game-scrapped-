@@ -31,6 +31,8 @@ immune_mod_stam = false
 stat_spd = 1
 stat_swim_spd = 1
 
+spd_built = 0
+
 mod_spd = 0
 immune_mod_spd = false
 
@@ -45,6 +47,9 @@ immune_mod_mag = false
 stat_arm_base = 1
 
 stat_arm_elem = array_create(8, 1)
+
+aim = 100
+defense = 0
 
 #endregion stats
 #region define status effects
@@ -99,13 +104,22 @@ defending = 0
 #endregion define status effects
 #region racial traits
 
+age = 0
+
+colour = c_white
+
+my_ai = undefined//function() {}
+
+is_boss = false
+
 beast_id = -1
 name = string("No name {0}", instance_number(object_index))
 
 enemy_team = false //yay i love using the not word =DDDDDDFDSD
 ai_ctrl = false
 
-selected_move = undefined
+selected_move = undefined //[ time needed, [the actual data to be evented], move name ]
+needed_target = noone //move is canceled if the target no longer exists, noone means that no target is needed
 
 is_human = false
 is_dragon = false
@@ -122,6 +136,7 @@ race_organic = false
 race_robotic = false
 
 can_fly = false
+flying = false
 in_water = false
 
 has_gun = false
@@ -134,6 +149,8 @@ pocket_items = []	//[[use item move, item id], name, desc]
 
 #endregion racial traits
 #region data structures
+
+menu_page_fairy = -1
 
 list_fairy = ds_list_create()
 

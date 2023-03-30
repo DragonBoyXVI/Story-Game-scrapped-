@@ -2,6 +2,7 @@
 randomize()
 
 #macro ANIM_LAYER_NAME ("anim")
+#macro NONE (-1)
 
 #region game data and macs
 
@@ -17,6 +18,10 @@ global.battle_before_room = -1
 global.battle_id = undefined
 
 global.enemy_level = [0, 3]
+
+global.tex_music = array_create(BEASTS.JAB, -1)
+
+global.tex_music_boss = [-1]
 
 global.yscale = 1
 #macro YSCALE (global.yscale)

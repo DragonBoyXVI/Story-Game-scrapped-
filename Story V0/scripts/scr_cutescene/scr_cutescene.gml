@@ -215,7 +215,7 @@ function fun_trans_done() {
 function fun_create_anim(_aim) {
 	
 	if layer_exists(ANIM_LAYER_NAME) then layer_destroy(ANIM_LAYER_NAME)
-	var _layer = layer_create(-999, ANIM_LAYER_NAME)
+	var _layer = layer_create(-9998, ANIM_LAYER_NAME)
 	var _seq = layer_sequence_create(_layer, 0, 0, _aim)
 	
 	layer_script_begin(_layer, fun_layer_surface_set)
@@ -266,6 +266,15 @@ function fun_cut_make_battle(_battle_id, _battle_room, _in, _out) {
 		
 		global.battle_before_room = room
 		global.battle_id = _battle_id
+		
+		switch(_battle_id) {//battle music
+			
+			default:
+			fun_play_over_mus(snd_battle_test, 0.1)
+			global.tex_music = [snd_battle_test_drac, -1, -1, -1, -1]
+			break
+			
+		}
 		
 	}
 	
@@ -438,7 +447,9 @@ function fun_gametext(_textid) {
 		fun_text("YEEEEEEEEEEEEEEEEEEE HEHHEHEHEHEHE. EHEHHEHEHE EHHEHEHEHEHE KKZKKZKZKZKZKKZKZ")
 		fun_text("Okie thank you naow answer this")
 		fun_text("do you liek gaming?")
-			fun_text_data_deets(0.5, spr_pix_hollow, -1, 2)
+			fun_text_data_sound(snd_wood_step_clawed_0, false, 4)
+			fun_text_data_deets(0.1, spr_pix_hollow, -1, 2)
+			
 			fun_text_option("Yes i love gayms", "test true")
 			fun_text_option("No i'm homophonic", "test false")
 			fun_text_option("take me to the other room", "test trans")
@@ -510,9 +521,9 @@ function fun_option_results(_textid) {
  #endregion this is where all the textbox stuff is
 #region music
 
-function fun_cut_over_mus(_mus = -1, _time_sec = 0, _pos = 0) {
+function fun_cut_over_mus(_mus = -1, _time_sec = 0, _tex_mus = array_create(5, -1), _pos = 0) {
 	
-	fun_play_over_mus(_mus, _time_sec, _pos)
+	fun_play_over_mus(_mus, _time_sec, _tex_mus ,_pos)
 	fun_cut_end()
 	
 }

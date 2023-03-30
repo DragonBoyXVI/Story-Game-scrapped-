@@ -1,6 +1,11 @@
 
 draw_set_font(font[page])
 
+if (do_setup) then {
+	do_setup = false
+	
+}
+
 //update
 if (page_prev != page) then {
 	

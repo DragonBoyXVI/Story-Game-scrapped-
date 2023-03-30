@@ -115,5 +115,6 @@
     {"name":"snd_wood_step_clawed_1","order":13,"path":"sounds/snd_wood_step_clawed_1/snd_wood_step_clawed_1.yy",},
     {"name":"obj_player_interact","order":5,"path":"objects/obj_player_interact/obj_player_interact.yy",},
     {"name":"spr_drac_bust_left_nute_test","order":1,"path":"sprites/spr_drac_bust_left_nute_test/spr_drac_bust_left_nute_test.yy",},
+    {"name":"scr_utility","order":9,"path":"scripts/scr_utility/scr_utility.yy",},
   ],
 }

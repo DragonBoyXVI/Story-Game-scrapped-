@@ -1,5 +1,5 @@
 
-if instance_exists(obj_cutscene_manager) then exit
+if instance_exists(obj_cutscene_manager) or layer_exists(ANIM_LAYER_NAME) then exit
 
 if (framewait > 0) then {
 	

@@ -1,7 +1,7 @@
 
 #region music
 
-function fun_mus_to_loops(_mus) {
+function fun_mus_to_loops(_mus) {//no longer in use
 	
 	var _bias = -0.015
 	
@@ -23,11 +23,11 @@ function fun_mus_to_loops(_mus) {
 	
 }
 
-function fun_play_over_mus(_mus = -1, _time_sec = 0.5, _pos = 0) {
+function fun_play_over_mus(_mus = -1, _time_sec = 0.5, _tex_mus = array_create(5, -1), _pos = 0) {
 	
 	with obj_camera {
 		
-		if (mus_tex != -1) then audio_sound_gain(mus_tex, 0, _time_sec * 1000)
+		if (mus_tex != -1) then fun_play_tex_music(-1, _time_sec)
 		
 		if (mus_prev != -1) then {
 		
@@ -56,6 +56,8 @@ function fun_play_over_mus(_mus = -1, _time_sec = 0.5, _pos = 0) {
 		fun_mus_to_loops(_mus)
 		
 	}
+	
+	global.tex_music = _tex_mus
 	
 }
 

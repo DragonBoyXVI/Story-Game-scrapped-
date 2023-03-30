@@ -153,6 +153,7 @@
     {"id":{"name":"snd_wood_step_clawed_1","path":"sounds/snd_wood_step_clawed_1/snd_wood_step_clawed_1.yy",},},
     {"id":{"name":"obj_player_interact","path":"objects/obj_player_interact/obj_player_interact.yy",},},
     {"id":{"name":"spr_drac_bust_left_nute_test","path":"sprites/spr_drac_bust_left_nute_test/spr_drac_bust_left_nute_test.yy",},},
+    {"id":{"name":"scr_utility","path":"scripts/scr_utility/scr_utility.yy",},},
     {"id":{"name":"spr_over_drac_idle_left","path":"sprites/spr_over_drac_idle_left/spr_over_drac_idle_left.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
   ],

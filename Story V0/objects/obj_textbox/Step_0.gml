@@ -11,13 +11,33 @@ if (typing) then {
 		charfloor = floor(charpos)
 		
 		var _curchar = string_char_at(text[page], charfloor)
+		var _chartalk = true
 		
 		if (_curchar == "."
 		or _curchar == ","
 		or _curchar == "+"
 		or _curchar == "-"
+		or _curchar == "\""
 		or _curchar == "?") then {
 			charwait = spd[page]*5
+			_chartalk = false
+		}
+		
+		if (_curchar == " "
+		or _curchar == "!"
+		or _curchar == "#"
+		or _curchar == "$"
+		or _curchar == "%"
+		or _curchar == "^"
+		or _curchar == "("
+		or _curchar == ")"
+		or _curchar == "_"
+		or _curchar == "{"
+		or _curchar == "}"
+		or _curchar == "["
+		or _curchar == "]"
+		or _curchar == "@") then {
+			_chartalk = false
 		}
 		
 		typing = (charfloor < charlength)
@@ -33,7 +53,7 @@ if (typing) then {
 				
 			} else {
 				
-				if (soundpos < charfloor) then {
+				if (soundpos < charfloor and _chartalk) then {
 					
 					soundpos = charfloor
 					audio_stop_sound(sound[page])

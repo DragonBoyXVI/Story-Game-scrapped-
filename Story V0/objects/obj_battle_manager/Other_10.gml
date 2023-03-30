@@ -1,6 +1,7 @@
 /// @description battle unit charging
 
 time_passed += 1/timescale
+var _timemult = 1/timescale
 
 #region check for a unit who needs to pick a move (test
 /*
@@ -49,6 +50,8 @@ var i = 0
 //check if a unit needs to pick a move
 ds_priority_clear(queue)
 with obj_battle_unit {
+	
+	age += _timemult
 	
 	if (ap <= 0 or ignore_me) then {
 		

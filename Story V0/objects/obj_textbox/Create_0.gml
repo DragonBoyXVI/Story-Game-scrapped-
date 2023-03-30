@@ -7,6 +7,8 @@ charfloor = 0
 charlength = 0
 pos = 0
 
+do_setup = true
+
 typing = false
 
 key_up = false

@@ -9,6 +9,12 @@ function fun_battle_next(_wait = 0, _time_goes = GAMEMOD_ACTIVE_COMBAT) {
 	stored_id = noone
 	stored_bool = false
 	
+	if (_time_goes and GAMEMOD_ACTIVE_COMBAT) then {
+		timescale = 1/GAMEMOD_ACTIVE_DIV
+		event_perform(ev_other, ev_user0)
+		timescale = 1
+	}
+	
 }
 
 function fun_battle_event(_data, _end = false) {
@@ -67,7 +73,12 @@ function fun_battle_pick_move(_target) {
 #endregion picking stuff
 #region random shit you wont ever fuckng need
 
-
+function fun_battle_randomize() {
+	
+	ds_list_shuffle(events)
+	fun_battle_next(5)
+	
+}
 
 #endregion random shit you wont ever fuckng need
 #region make shit (not battle)
@@ -79,16 +90,16 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 	with _me {
 		
 		enemy_team = ( _teamlist == other.units[1] )
-		ai_ctrl = _player == undefined ? not enemy_team : _player
+		ai_ctrl = _player == undefined ? enemy_team : _player
 		
 		beast_id = _beast_id
 		
 		sprite_index = spr_over_drac_needle_hold_right
 		
 		moveset_basic = [//[id, name]
-			[MOVES.MELEE_ATK, "Melee Attack"],
-			[MOVES.DEFEND, "Defend"],
-			[MOVES.REST, "Rest"],
+			[MOVES.MELEE_ATK, "Melee Attack", "Strike a foe at close range, doing STR melee blunt damage. 20 time, 1 AP, 4 stamina."],
+			[MOVES.DEFEND, "Defend", "Focus on defense for 5 seconds, halving all recived damage reguardless of source or type. 1 AP, 8 stamina."],
+			[MOVES.REST, "Rest", "Spend 1 AP to recover 5 stamina and gain 1 regen."],
 		]
 		
 		switch(beast_id) {
@@ -96,7 +107,7 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 			case BEASTS.DRAC:
 			#region
 			
-			moveset_basic[0] = [MOVES.RANGE_ATK, "Throw Pen"]
+			moveset_basic[0] = [MOVES.RANGE_ATK, "Throw Pen", "Drac throws her pen, dealing STR ranged blunt damage."]
 			
 			name = "Drac"
 			
@@ -214,15 +225,149 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 #endregion make shit (not battle)
 #region in battle functions
 
-function fun_battleunit_speed() {
+function fun_battleunit_speed(_id = id) {
 	
-	var _spd = stat_spd * ( mod_spd == 0 ? 1 : ( mod_spd > 0 ? STATUS_MOD_SPD_UP : STATUS_MOD_SPD_DOWN ) )
-	_spd -= (poisoned > 0 ? STATUS_POISON_SPD : 0)
-	_spd += (burning > 0 ? STATUS_BURN_SPD : 0)
-	_spd *= ( in_water ? stat_swim_spd : 1 )
+	var _spd = -1
+	
+	with _id {
+		
+		_spd = stat_spd * ( mod_spd == 0 ? 1 : ( mod_spd > 0 ? STATUS_MOD_SPD_UP : STATUS_MOD_SPD_DOWN ) )
+		_spd -= (poisoned > 0 ? STATUS_POISON_SPD : 0)
+		_spd += (burning > 0 ? STATUS_BURN_SPD : 0)
+		_spd *= ( in_water ? stat_swim_spd : 1 )
+	
+	}
 	
 	return _spd
 	
 }
 
+function fun_battleunit_strength(_id = id) {
+	
+	var _str = -1
+	
+	with _id {
+		
+		_str = str + mod_str
+		
+	}
+	
+	return _str
+	
+}
+
+function fun_battleunit_magic(_id = id) {
+	
+	var _mag = -1
+	
+	with _id {
+		
+		_mag = str + mod_str
+		
+	}
+	
+	return _mag
+	
+}
+
 #endregion in battle functions
+#region shit for the menu
+
+function fun_move_to_menu_data(_move) {
+	
+	switch(_move) {
+		
+		case MOVES.MELEE_ATK:
+		stored_data = [fun_battle_melee_attack, actor, NONE] //move function, data, data
+		times_to_edit = 0 //what edit are we currently on?
+		max_edits = 1 //how many times to edit
+		what_menu = [5] //array of pages to look at
+		edit_index = [2] //position in data to edit
+		menu_message = ["Melee Attack Whom?"]
+		break
+		
+	}
+	
+}
+
+#endregion shit for the menu
+#region move functions
+
+function fun_aim(_actor, _target) {
+	
+	var _aim = _actor.aim
+	
+	if _actor.enemy_team == _target.enemy_team then {
+		
+		_aim = 100
+		
+	} else {
+		
+		_aim -= _target.defense
+		
+	}
+	
+	return _aim
+	
+}
+
+function fun_hit(_actor, _target, _is_melee, _aim = fun_aim(_actor, _target)) {
+	
+	var _data = {hit: false, headshot: false}
+	var _chance = fun_draw_rng()
+	
+	if (_actor.flying or (_actor.flying == _target.flying)) then {
+		
+		_data.hit = (_aim < _chance)
+		_data.headshot = (_is_melee ? false : (_aim - 100) < _chance )
+		
+	}
+	
+	return _data
+	
+}
+
+function fun_battle_melee_attack(_actor, _target) {
+	
+	if (!instance_exists(_actor) or _actor.ignore_me) then fun_battle_next()
+	if (!instance_exists(_target) or _target.ignore_me) then fun_battle_next()
+	
+	var _data = fun_hit(_actor, _target, true)
+	
+	if (_data.hit) then {
+		fun_battle_event([fun_battle_deal_damage, _actor, _target, fun_battleunit_strength(_actor), ELEMENT.BLUNT, 1])
+		fun_battle_next(10)
+		exit
+	} else fun_battle_next()
+	
+}
+
+function fun_battle_ranged_attack(_actor, _target) {
+	
+	if (!instance_exists(_actor) or _actor.ignore_me) then fun_battle_next()
+	if (!instance_exists(_target) or _target.ignore_me) then fun_battle_next()
+	
+	var _data = fun_hit(_actor, _target, false)
+	
+	if (_data.hit) then {
+		fun_battle_event([fun_battle_deal_damage, _actor, _target, fun_battleunit_strength(_actor), ELEMENT.BLUNT, 1])
+		fun_battle_next(10)
+		exit
+	} else fun_battle_next()
+	
+}
+
+#endregion move functions
+#region damage
+
+function fun_battle_deal_damage(_actor, _target, _dmg_amt, _element, _peirce) {
+	
+	
+	
+}
+
+#endregion damage
+#region status effects
+
+
+#endregion status effects
