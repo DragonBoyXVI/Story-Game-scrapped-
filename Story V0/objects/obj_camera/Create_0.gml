@@ -6,6 +6,8 @@ if (instance_number(obj_camera) > 1) then {
 	
 }
 
+//surface_resize(application_surface, SCREEN_WIDTH/SETTINGS_APP_SURF_DIV, SCREEN_HEIGHT/SETTINGS_APP_SURF_DIV)
+
 fun_init_rng() //test
 
 state = STATES.FOLLOW_OBJ

@@ -63,8 +63,8 @@ if (!instance_exists(obj_cutscene_manager) and can_pause and keyboard_check_pres
 #endregion pausing
 #region debug
 
-if (keyboard_check_pressed(ord("1"))) then lens_tween = 1
-if (keyboard_check_pressed(ord("2"))) then lens_tween = 2
-if (keyboard_check_pressed(ord("3"))) then lens_tween = 3
+//if (keyboard_check_pressed(ord("1"))) then lens_tween = 1
+//if (keyboard_check_pressed(ord("2"))) then lens_tween = 2
+//if (keyboard_check_pressed(ord("3"))) then lens_tween = 3
 
 #endregion debug

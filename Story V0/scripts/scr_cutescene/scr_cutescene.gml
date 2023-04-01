@@ -225,6 +225,16 @@ function fun_create_anim(_aim) {
 	
 }
 
+function fun_create_move_anim(_anim, _x = 0, _y = 0, _depth = -999) {
+	
+	if layer_exists(ANIM_LAYER_NAME) then layer_destroy(ANIM_LAYER_NAME)
+	var _layer = layer_create(_depth, ANIM_LAYER_NAME)
+	var _seq = -layer_sequence_create(_layer, _x, _y, _anim)
+	
+	return _seq
+	
+}
+
 function fun_kill_anim() {
 	
 	layer_sequence_destroy(self.elementID)
@@ -270,8 +280,9 @@ function fun_cut_make_battle(_battle_id, _battle_room, _in, _out) {
 		switch(_battle_id) {//battle music
 			
 			default:
-			fun_play_over_mus(snd_battle_test, 0.1)
-			global.tex_music = [snd_battle_test_drac, -1, -1, -1, -1]
+			//fun_play_over_mus(snd_battle_test, 0.1)
+			fun_play_over_mus(snd_mus_battle_fevir_test, 0)
+			//global.tex_music = [snd_battle_test_drac, -1, -1, -1, -1]
 			break
 			
 		}

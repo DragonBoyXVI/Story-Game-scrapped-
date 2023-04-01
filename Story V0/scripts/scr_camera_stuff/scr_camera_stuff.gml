@@ -17,7 +17,7 @@ function fun_room_to_shader() {
 		
 		case rm_test_battle:
 		blend_color = [25/255, 25/255, 173/255]
-		blend_amt = 0.1
+		blend_amt = 0.2
 		break
 		
 	}

@@ -100,21 +100,26 @@ global.settings = {
 	shader_on: true,
 	
 	draw_rounded: false,
+	show_time_as: 0, //0 = seconds, 1 = frames
 	
 	show_mouse: true,
 	
-	gain_music: 0.75,//1,
+	gain_music: 1,
 	gain_sfx: 1,
+	
+	app_surf_div: 3,
 	
 }
 #macro SETTINGS_SHADER (global.settings.shader_on)
 #macro SETTINGS_DRAW_ROUND (global.settings.draw_rounded)
+#macro SETTINGS_DRAW_FRAMES (global.settings.show_time_as)
 
 #macro SETTINGS_DRAW_MOUSE (global.settings.show_mouse)
 
-
 #macro SETTINGS_GAIN_MUS (global.settings.gain_music)
 #macro SETTINGS_GAIN_SFX (global.settings.gain_sfx)
+
+#macro SETTINGS_APP_SURF_DIV (global.settings.app_surf_div)
 
 
 
@@ -270,6 +275,7 @@ audio_bus_main.effects[4] = _eff_bit
 
 #endregion audio effects
 #region set music loops										tempo * (bars * beats)
+audio_channel_num(50)
 
 audio_sound_loop_start(		snd_battle_test,				time_bpm_to_seconds(155) * (9 * 3))
 audio_sound_loop_end(		snd_battle_test,				time_bpm_to_seconds(155) * (111 * 3))
@@ -279,6 +285,9 @@ audio_sound_loop_end(		snd_battle_test_drac,			time_bpm_to_seconds(155) * (111 *
 
 audio_sound_loop_start(		snd_over_test,					time_bpm_to_seconds(123) * (5 * 4))
 audio_sound_loop_end(		snd_over_test,					time_bpm_to_seconds(123) * (25 * 4))
+
+audio_sound_loop_start(		snd_mus_battle_fevir_test,		time_bpm_to_seconds(145) * (1 * 4))
+audio_sound_loop_end(		snd_mus_battle_fevir_test,		time_bpm_to_seconds(145) * (46 * 4))
 
 #endregion set music loops
 #region colors and fonts

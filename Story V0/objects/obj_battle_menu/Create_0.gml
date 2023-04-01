@@ -23,11 +23,15 @@ switch(actor.beast_id) {
 
 stored_data = [] //move function, data, data
 
+move_time_needed = -1 //time needed to pop move
+
 times_to_edit = -1 //what edit are we currently on?
 max_edits = -1 //how many times to edit
 what_menu = [] //array of pages to look at
 edit_index = [] //position in data to edit
 menu_message = [] //what message to show
+target_fucker_is_here_bool = [] //if true, save the current index
+target_fucker_is_here_index = -1 //the index the taregt is at
 
 book[0] = [//base menu
 	"Act",

@@ -10,6 +10,7 @@
     {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":5,"path":"folders/Scripts.yy",},
     {"name":"Sequences","order":11,"path":"folders/Sequences.yy",},
+    {"name":"battle","order":2,"path":"folders/Sequences/battle.yy",},
     {"name":"trans","order":1,"path":"folders/Sequences/trans.yy",},
     {"name":"battles","order":8,"path":"folders/Sequences/trans/battles.yy",},
     {"name":"test","order":1,"path":"folders/Sequences/trans/battles/test.yy",},
@@ -33,6 +34,7 @@
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"collision tiles","order":1,"path":"folders/Tile Sets/collision tiles.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
+    {"name":"fevir","order":2,"path":"folders/Sounds/music/fevir.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"nt_song_times","order":3,"path":"notes/nt_song_times/nt_song_times.yy",},

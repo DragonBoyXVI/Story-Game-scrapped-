@@ -1,16 +1,6 @@
 
 if not ai_ctrl then exit
 
-with actor {
-	
-	if (is_method(my_ai)) then {
-		
-		my_ai()
-		
-	} else {
-		
-		//call default ai
-		
-	}
-	
-}
+var _ai = is_method(actor.my_ai) ? actor.my_ai : fun_battleunit_default_ai
+
+_ai()

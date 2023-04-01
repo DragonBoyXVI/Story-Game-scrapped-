@@ -108,7 +108,7 @@ age = 0
 
 colour = c_white
 
-my_ai = undefined//function() {}
+my_ai = undefined//function() {} //to be run within the menu object
 
 is_boss = false
 

@@ -18,7 +18,7 @@ switch(global.battle_id) { //create da battle
 	fun_place_battle_unit(300, 300, BEASTS.DRAC, units[0])
 	fun_place_battle_unit(600, 350, BEASTS.SHRUB, units[1])
 	
-	global.tex_music = [snd_battle_test_drac, -1, -1, -1, -1]
+	//global.tex_music = [snd_battle_test_drac, -1, -1, -1, -1]
 	break
 	
 }

@@ -8,6 +8,18 @@ if (framewait > 0) then {
 	
 }
 
+if (ds_list_size(events) > 0) then {
+	cur_event = ds_list_find_value(events, 0)
+	ds_list_delete(events, 0)
+}
+
+if (cur_event == undefined) then {
+	event_user(0)
+} else {
+	script_execute_ext(cur_event[0], cur_event, 1)
+}
+
+/*
 //check if an event is pending
 if (cur_event == undefined) then {
 	

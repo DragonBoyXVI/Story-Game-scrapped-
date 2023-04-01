@@ -1,7 +1,6 @@
 /// @description battle unit charging
 
-time_passed += 1/timescale
-var _timemult = 1/timescale
+time_passed += timescale
 
 #region check for a unit who needs to pick a move (test
 /*
@@ -51,7 +50,7 @@ var i = 0
 ds_priority_clear(queue)
 with obj_battle_unit {
 	
-	age += _timemult
+	age += other.timescale
 	
 	if (ap <= 0 or ignore_me) then {
 		
@@ -76,6 +75,36 @@ repeat(ds_priority_size(queue)) {
 	ds_priority_delete_min(queue)
 	
 	fun_battle_event([fun_battle_pick_move, _me])
+	
+}
+
+//charge moves and tick stats
+if (_me == noone) then {
+	
+	with obj_battle_unit {
+		
+		if ignore_me then continue
+		
+		if (selected_move == undefined) then continue
+		
+		if (needed_target != noone and !instance_exists(needed_target)) then {
+			selected_move = undefined
+			needed_target = noone
+			show_message("oop")
+			continue
+		}
+		
+		spd_built += (fun_battleunit_speed() / game_get_speed(gamespeed_fps) * other.timescale)
+		if (spd_built >= selected_move[0]) then {
+			
+			spd_built -= selected_move[0]
+			fun_battle_event(selected_move[1])
+			selected_move = undefined
+			needed_target = noone
+			
+		}
+		
+	}
 	
 }
 

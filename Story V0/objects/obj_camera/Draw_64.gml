@@ -1,3 +1,4 @@
+//draw_text(0, 0, [fps, fps_real])
 
 //draw_text(0, 0, room_persistent)
 /*

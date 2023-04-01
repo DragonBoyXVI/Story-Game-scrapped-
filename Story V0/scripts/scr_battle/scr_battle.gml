@@ -3,7 +3,8 @@
 
 function fun_battle_next(_wait = 0, _time_goes = GAMEMOD_ACTIVE_COMBAT) {
 	
-	cur_event = undefined
+	framewait += _wait
+	cur_event = undefined//ds_list_find_value(events, 0)
 	
 	actor = noone
 	stored_id = noone
@@ -64,8 +65,8 @@ function fun_battle_pick_move(_target) {
 		
 	}
 	
-	if (!instance_exists(obj_battle_menu)) then {
-		instance_create_depth(0, 0, 0, obj_battle_menu, {actor: _target, ai_ctrl: _target.ai_ctrl, state: 0})
+	if (!instance_exists(obj_battle_menu)) then { //menu will call battle next
+		instance_create_depth(0, 0, -9999, obj_battle_menu, {actor: _target, ai_ctrl: _target.ai_ctrl, state: 0})
 	}
 	
 }
@@ -107,7 +108,7 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 			case BEASTS.DRAC:
 			#region
 			
-			moveset_basic[0] = [MOVES.RANGE_ATK, "Throw Pen", "Drac throws her pen, dealing STR ranged blunt damage."]
+			moveset_basic[0] = [MOVES.RANGE_ATK, "Throw Pen", "Drac throws her pen, dealing STR ranged blunt damage. 20 time, 1 AP, 4 stamina."]
 			
 			name = "Drac"
 			
@@ -149,7 +150,7 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 			
 			case BEASTS.SHRUB:
 			#region
-			name = "Gettin ur ass kicked by a shrub lmao"
+			name = "Shub"
 			
 			level = irandom_range(global.enemy_level[0], global.enemy_level[1])
 			
@@ -238,7 +239,7 @@ function fun_battleunit_speed(_id = id) {
 	
 	}
 	
-	return _spd
+	return max(_spd, 1)//speed cannot go below 1
 	
 }
 
@@ -248,7 +249,7 @@ function fun_battleunit_strength(_id = id) {
 	
 	with _id {
 		
-		_str = str + mod_str
+		_str = stat_str + mod_str
 		
 	}
 	
@@ -262,7 +263,7 @@ function fun_battleunit_magic(_id = id) {
 	
 	with _id {
 		
-		_mag = str + mod_str
+		_mag = stat_str + mod_str
 		
 	}
 	
@@ -279,11 +280,26 @@ function fun_move_to_menu_data(_move) {
 		
 		case MOVES.MELEE_ATK:
 		stored_data = [fun_battle_melee_attack, actor, NONE] //move function, data, data
+		move_time_needed = 20 //time needed to pop move
 		times_to_edit = 0 //what edit are we currently on?
 		max_edits = 1 //how many times to edit
-		what_menu = [5] //array of pages to look at
+		what_menu = [ actor.enemy_team ? 4 : 5 ] //array of pages to look at
 		edit_index = [2] //position in data to edit
 		menu_message = ["Melee Attack Whom?"]
+		target_fucker_is_here_bool = [true] //if true, save the current index
+		target_fucker_is_here_index = -1 //the index the taregt is at
+		break
+		
+		case MOVES.RANGE_ATK:
+		stored_data = [fun_battle_ranged_attack, actor, NONE] //move function, data, data
+		move_time_needed = 20 //time needed to pop move
+		times_to_edit = 0 //what edit are we currently on?
+		max_edits = 1 //how many times to edit
+		what_menu = [ actor.enemy_team ? 4 : 5 ] //array of pages to look at
+		edit_index = [2] //position in data to edit
+		menu_message = ["Ranged Attack Whom?"]
+		target_fucker_is_here_bool = [true] //if true, save the current index
+		target_fucker_is_here_index = -1 //the index the taregt is at
 		break
 		
 	}
@@ -306,7 +322,7 @@ function fun_aim(_actor, _target) {
 		_aim -= _target.defense
 		
 	}
-	
+	//show_message(_aim)
 	return _aim
 	
 }
@@ -316,13 +332,20 @@ function fun_hit(_actor, _target, _is_melee, _aim = fun_aim(_actor, _target)) {
 	var _data = {hit: false, headshot: false}
 	var _chance = fun_draw_rng()
 	
-	if (_actor.flying or (_actor.flying == _target.flying)) then {
+	if _is_melee then {
 		
-		_data.hit = (_aim < _chance)
-		_data.headshot = (_is_melee ? false : (_aim - 100) < _chance )
+		if (_actor.flying or _actor.flying == _target.flying) then {
+			_data.hit = (_aim > _chance)
+		}
+		
+	} else {
+		
+		_data.hit = (_aim > _chance)
+		_data.headshot = ((_aim-100) > _chance)
 		
 	}
 	
+	//show_message(_data)
 	return _data
 	
 }
@@ -331,6 +354,11 @@ function fun_battle_melee_attack(_actor, _target) {
 	
 	if (!instance_exists(_actor) or _actor.ignore_me) then fun_battle_next()
 	if (!instance_exists(_target) or _target.ignore_me) then fun_battle_next()
+	
+	with _actor {
+		ap -= 1
+		stat_stam -= 4
+	}
 	
 	var _data = fun_hit(_actor, _target, true)
 	
@@ -347,6 +375,11 @@ function fun_battle_ranged_attack(_actor, _target) {
 	if (!instance_exists(_actor) or _actor.ignore_me) then fun_battle_next()
 	if (!instance_exists(_target) or _target.ignore_me) then fun_battle_next()
 	
+	with _actor {
+		ap -= 1
+		stat_stam -= 4
+	}
+	
 	var _data = fun_hit(_actor, _target, false)
 	
 	if (_data.hit) then {
@@ -362,7 +395,9 @@ function fun_battle_ranged_attack(_actor, _target) {
 
 function fun_battle_deal_damage(_actor, _target, _dmg_amt, _element, _peirce) {
 	
-	
+	show_message("doink")
+	_target.stat_hp -= 1
+	fun_battle_next(5)
 	
 }
 
