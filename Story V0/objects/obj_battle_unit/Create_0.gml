@@ -1,5 +1,6 @@
 
 highlight_pix = 6
+highlight_col = c_green
 highlight_me = true
 
 #region stats
@@ -28,7 +29,7 @@ stat_stam_regen = 1
 mod_stam = 0
 immune_mod_stam = false
 
-stat_spd = 1
+stat_spd = 10
 stat_swim_spd = 1
 
 spd_built = 0
@@ -144,6 +145,9 @@ gun_clip = 0
 gun_clip_max = 0
 
 moveset_basic = []  //[id, name]
+
+range_bullet = BULLETS.NEEDLE
+
 moveset_skills = []	//[id, name]
 pocket_items = []	//[[use item move, item id], name, desc]
 
@@ -169,7 +173,10 @@ struct_sprites = {
 #endregion data structures
 #region traits
 
+//drac
 uni_toxic_blood = false
+
+
 
 #endregion traits
 #region water

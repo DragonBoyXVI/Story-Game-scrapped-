@@ -22,6 +22,7 @@
     {"name":"footsteps","order":1,"path":"folders/Sounds/footsteps.yy",},
     {"name":"magic","order":3,"path":"folders/Sounds/magic.yy",},
     {"name":"music","order":4,"path":"folders/Sounds/music.yy",},
+    {"name":"fevir","order":2,"path":"folders/Sounds/music/fevir.yy",},
     {"name":"test","order":1,"path":"folders/Sounds/music/test.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Drac","order":1,"path":"folders/Sprites/Drac.yy",},
@@ -34,7 +35,6 @@
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"collision tiles","order":1,"path":"folders/Tile Sets/collision tiles.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
-    {"name":"fevir","order":2,"path":"folders/Sounds/music/fevir.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"nt_song_times","order":3,"path":"notes/nt_song_times/nt_song_times.yy",},
@@ -114,6 +114,7 @@
     {"name":"spr_water_tiles","order":2,"path":"sprites/spr_water_tiles/spr_water_tiles.yy",},
     {"name":"obj_game_pauser","order":1,"path":"objects/obj_game_pauser/obj_game_pauser.yy",},
     {"name":"spr_over_drac_idle_right","order":2,"path":"sprites/spr_over_drac_idle_right/spr_over_drac_idle_right.yy",},
+    {"name":"obj_effects_bullet","order":7,"path":"objects/obj_effects_bullet/obj_effects_bullet.yy",},
     {"name":"snd_wood_step_clawed_1","order":13,"path":"sounds/snd_wood_step_clawed_1/snd_wood_step_clawed_1.yy",},
     {"name":"obj_player_interact","order":5,"path":"objects/obj_player_interact/obj_player_interact.yy",},
     {"name":"spr_drac_bust_left_nute_test","order":1,"path":"sprites/spr_drac_bust_left_nute_test/spr_drac_bust_left_nute_test.yy",},

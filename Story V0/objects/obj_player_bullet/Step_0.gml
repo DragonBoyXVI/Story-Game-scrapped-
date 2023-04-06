@@ -6,6 +6,8 @@ depth = -bbox_bottom
 
 image_angle = direction + sprite_rot_off
 
+on_step()
+
 if fun_check_for_interact(id, collision_line(xprevious, yprevious, x, y, obj_cutscene_trigger, false, true)) then {
 	
 	instance_destroy()

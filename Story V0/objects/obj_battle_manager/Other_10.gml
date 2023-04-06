@@ -111,6 +111,10 @@ if (_me == noone) then {
 //give ap at the start of the round
 if (_me == noone and i == instance_number(obj_battle_unit)) then {
 	
+	if (round_count < array_length(scripted_rounds) and scripted_rounds[round_count] != -1) then {
+		var _cut = instance_create_depth(0, 0, 0, obj_cutscene_manager)
+		_cut.scene_info = scripted_rounds[round_count].scene_info
+	}
 	round_count++
 	
 	with obj_battle_unit {

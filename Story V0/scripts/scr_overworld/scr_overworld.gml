@@ -136,8 +136,12 @@ function fun_check_for_interact(_me, _touched) { //run inside me
 
 function fun_get_exp(_lvl) {//max level 25
 	
-	return (power(2, _lvl) + (10 * _lvl))
+	return (power(2, _lvl/1.6) + (10 * _lvl))
 	
+}
+
+function fun_give_exp_scaled(_exp, _level) {
+	return _exp * (power(1.1, _level))
 }
 
 #endregion level ups

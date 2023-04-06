@@ -6,6 +6,9 @@ framewait = 0
 units[0] = ds_list_create() //player side
 units[1] = ds_list_create() //enemy 
 
+scripted_rounds = array_create(1000, -1)
+//scripted_rounds[0] = {scene_info: [[fun_cut_textbox, "test"]]}
+
 round_count = 0
 timescale = 1
 
@@ -24,6 +27,9 @@ switch(global.battle_id) { //create da battle
 }
 
 battle_id = global.battle_id
+
+exp_collected = 0
+items_collected = []
 
 #region cutscene related
 

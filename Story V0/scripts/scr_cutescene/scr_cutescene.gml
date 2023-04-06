@@ -128,7 +128,7 @@ function fun_layer_surface_set() {
 	
 	if (event_type == ev_draw) then {
 		
-		if (event_number == 0) then {
+		if (event_number == ev_draw_normal) then {
 			
 			with obj_camera { if !surface_exists(trans_surf) then trans_surf = surface_create(SCREEN_WIDTH/2, SCREEN_HEIGHT/2) }
 			shader_reset()
@@ -283,6 +283,7 @@ function fun_cut_make_battle(_battle_id, _battle_room, _in, _out) {
 			//fun_play_over_mus(snd_battle_test, 0.1)
 			fun_play_over_mus(snd_mus_battle_fevir_test, 0)
 			//global.tex_music = [snd_battle_test_drac, -1, -1, -1, -1]
+			global.tex_music = [-1, -1, -1, -1, -1]
 			break
 			
 		}
@@ -313,7 +314,34 @@ function fun_cut_make_battle(_battle_id, _battle_room, _in, _out) {
 	
 }
 
- #endregion change rooms
+function fun_cut_end_battle(_innie, _outie) {
+	
+	if not global.in_trans then {
+		
+		fun_trans_start(global.battle_before_room, _innie, _outie)
+		stored_id = room
+		instance_destroy(obj_battle_manager)
+		
+	}
+	
+	if (stored_id != room) then {
+		
+		obj_player.x = global.stored_coords[0]
+		obj_player.y = global.stored_coords[1]
+		
+		obj_camera.x = obj_player.x
+		obj_camera.y = obj_player.y
+		obj_camera.state = STATES.FOLLOW_OBJ
+		obj_camera.follow_obj = obj_player
+		obj_camera.follow_offy = -32
+		
+		room_persistent = false
+		
+	}
+	
+}
+
+#endregion change rooms
 #region this is where all the textbox stuff is
 
 function fun_cut_textbox(_textid) {//make cutscene textbox

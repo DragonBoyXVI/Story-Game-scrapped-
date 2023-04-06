@@ -162,7 +162,7 @@ function fun_place_battle_unit(_x, _y, _beast_id, _teamlist, _player = undefined
 			stat_stam_max = 100
 			stat_stam_regen = 100
 			
-			stat_spd = 1
+			stat_spd = 5
 			
 			stat_str = 0
 			stat_mag = 0
@@ -232,6 +232,10 @@ function fun_battleunit_speed(_id = id) {
 	
 	with _id {
 		
+		if (defending) then {
+			return 5 / game_get_speed(gamespeed_fps)
+		}
+		
 		_spd = stat_spd * ( mod_spd == 0 ? 1 : ( mod_spd > 0 ? STATUS_MOD_SPD_UP : STATUS_MOD_SPD_DOWN ) )
 		_spd -= (poisoned > 0 ? STATUS_POISON_SPD : 0)
 		_spd += (burning > 0 ? STATUS_BURN_SPD : 0)
@@ -291,7 +295,7 @@ function fun_move_to_menu_data(_move) {
 		break
 		
 		case MOVES.RANGE_ATK:
-		stored_data = [fun_battle_ranged_attack, actor, NONE] //move function, data, data
+		stored_data = [fun_battle_ranged_attack, actor, NONE, actor.range_bullet] //move function, data, data
 		move_time_needed = 20 //time needed to pop move
 		times_to_edit = 0 //what edit are we currently on?
 		max_edits = 1 //how many times to edit
@@ -356,6 +360,8 @@ function fun_battle_melee_attack(_actor, _target) {
 	if (!instance_exists(_target) or _target.ignore_me) then fun_battle_next()
 	
 	with _actor {
+		image_index = 0
+		sprite_index = struct_sprites.attack_basic
 		ap -= 1
 		stat_stam -= 4
 	}
@@ -370,33 +376,119 @@ function fun_battle_melee_attack(_actor, _target) {
 	
 }
 
-function fun_battle_ranged_attack(_actor, _target) {
+function fun_battle_ranged_attack(_actor, _target, _bullet_index) {
 	
 	if (!instance_exists(_actor) or _actor.ignore_me) then fun_battle_next()
 	if (!instance_exists(_target) or _target.ignore_me) then fun_battle_next()
 	
 	with _actor {
+		image_index = 0
+		sprite_index = struct_sprites.attack_basic
+		var _wait = 0//sprite_get_number(sprite_index) / sprite_get_speed(sprite_index) * game_get_speed(gamespeed_fps)
 		ap -= 1
 		stat_stam -= 4
 	}
 	
 	var _data = fun_hit(_actor, _target, false)
+	_wait = fun_battle_projectile(_bullet_index, _actor, _target, _data.hit)
 	
 	if (_data.hit) then {
+		
 		fun_battle_event([fun_battle_deal_damage, _actor, _target, fun_battleunit_strength(_actor), ELEMENT.BLUNT, 1])
-		fun_battle_next(10)
+		fun_battle_next(_wait)
+		
 		exit
-	} else fun_battle_next()
+	} else {
+		
+		fun_battle_next(_wait)
+		
+	}
 	
 }
 
 #endregion move functions
+#region animations
+
+function fun_battle_change_sprite(_target, _sprite) {
+	
+	if (!instance_exists(_target) or _target.ignore_me) then {
+		fun_battle_next(0, false)
+		exit
+	}
+	
+	var _time = sprite_get_number(_sprite)/sprite_get_speed(_sprite) * game_get_speed(gamespeed_fps)
+	_target.sprite_index = _sprite
+	_target.image_index = 0
+	fun_battle_next(_time, false)
+	
+}
+
+function fun_battle_projectile(_index, _owner, _target, _hit) {
+	
+	var _ox = instance_exists(_owner) ? _owner.x : 0
+	var _oy = instance_exists(_owner) ? _owner.y : 0
+	
+	var _tx = instance_exists(_target) ? _target.x : 0
+	var _ty = instance_exists(_target) ? _target.y : 0
+	
+	var _wait = 0 //steps to finish the path
+	
+	with instance_create_depth(_ox, _oy, 0, obj_effects_bullet) {
+		
+		my_path = path_add()
+		
+		switch(_index) {
+			
+			default:
+			case BULLETS.NEEDLE:
+			#region
+			
+			path_add_point(my_path, _ox, _oy, 100)
+			//path_add_point(my_path, 400, 0, 100)
+			if (_hit) then path_add_point(my_path, _tx, _ty, 100) else {
+				var _dir = point_direction(_ox, _oy, _tx, _ty)
+				var _mx = _tx + lengthdir_x(1000, _dir)
+				var _my = _ty + lengthdir_y(1000, _dir)
+				path_add_point(my_path, _mx, _my, 100)
+			}
+			
+			path_set_closed(my_path, false)
+			path_set_kind(my_path, 1)
+			
+			path_start(my_path, 100, path_action_stop, true)
+			image_angle = point_direction(_ox, _oy, _tx, _ty)
+			image_xscale = 1.5
+			image_yscale = 0.5
+			sprite_index = spr_bullet_needle
+			
+			fun_me_stepping = function() {
+				part_particles_create(global.part_sys, x, y, global.poison_type, 1)
+			}
+			fun_me_dying = function() {
+				part_particles_create(global.part_sys, x, y, global.poison_type, 10)
+			}
+			
+			#endregion
+			break
+			
+		}
+		
+		_wait = floor(path_get_length(my_path)/path_speed)
+		
+	}
+	
+	return _wait
+	
+}
+
+#endregion animations
 #region damage
 
 function fun_battle_deal_damage(_actor, _target, _dmg_amt, _element, _peirce) {
 	
-	show_message("doink")
-	_target.stat_hp -= 1
+	_target.stat_hp -= _dmg_amt
+	_target.sprite_index = _target.struct_sprites.hurt_blunt
+	_target.image_index = 0
 	fun_battle_next(5)
 	
 }

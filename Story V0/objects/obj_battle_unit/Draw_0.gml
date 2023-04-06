@@ -1,4 +1,11 @@
 
+/*
+if (highlight_me) then {
+	var _width_2 = sprite_width/2
+	draw_sprite_stretched_ext(sprite_index, image_index, x-_width_2-highlight_pix, y-sprite_height-highlight_pix, sprite_width+highlight_pix, sprite_height+highlight_pix, highlight_col, 1)
+}
+*/
+
 if (in_water) then
 	fun_draw_self_water()
 else

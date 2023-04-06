@@ -33,6 +33,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"footsteps","folderPath":"folders/Sounds/footsteps.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"magic","folderPath":"folders/Sounds/magic.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"music","folderPath":"folders/Sounds/music.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"fevir","folderPath":"folders/Sounds/music/fevir.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"test","folderPath":"folders/Sounds/music/test.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Drac","folderPath":"folders/Sprites/Drac.yy",},
@@ -45,7 +46,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"collision tiles","folderPath":"folders/Tile Sets/collision tiles.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"fevir","folderPath":"folders/Sounds/music/fevir.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"RNG_table_base.txt","CopyToMask":-1,"filePath":"datafiles/RNG",},
@@ -153,6 +153,7 @@
     {"id":{"name":"obj_game_pauser","path":"objects/obj_game_pauser/obj_game_pauser.yy",},},
     {"id":{"name":"seq_battle_anim_0","path":"sequences/seq_battle_anim_0/seq_battle_anim_0.yy",},},
     {"id":{"name":"spr_over_drac_idle_right","path":"sprites/spr_over_drac_idle_right/spr_over_drac_idle_right.yy",},},
+    {"id":{"name":"obj_effects_bullet","path":"objects/obj_effects_bullet/obj_effects_bullet.yy",},},
     {"id":{"name":"spr_test_idle","path":"sprites/spr_test_idle/spr_test_idle.yy",},},
     {"id":{"name":"snd_wood_step_clawed_1","path":"sounds/snd_wood_step_clawed_1/snd_wood_step_clawed_1.yy",},},
     {"id":{"name":"obj_player_interact","path":"objects/obj_player_interact/obj_player_interact.yy",},},

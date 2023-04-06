@@ -79,7 +79,7 @@ function fun_play_tex_music(_mus = -1, _time_sec = 0.5) {
 		
 		if (_mus != undefined and _mus != -1) then {
 			
-			mus_tex = audio_play_sound(_mus, 2, true, 0, audio_sound_get_track_position(mus))
+			mus_tex = audio_play_sound(_mus, 2, true, 0, audio_sound_get_track_position(mus) + delta_time/1000000)
 			audio_sound_gain(mus_tex, SETTINGS_GAIN_MUS, _time_sec * 1000)
 			
 		}

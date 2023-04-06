@@ -1,4 +1,7 @@
 
+//part_particles_create(global.part_sys, x+random_range(-sprite_width/2, sprite_width/2), y-random(sprite_height), global.poison_type, choose(0, 0, 1))
+//effect_create_above(ef_rain, 0, 0, 1, c_blue)
+
 var _yscale = YSCALE
 
 #region state machine

@@ -26,7 +26,16 @@ if (_type == "sequence event") then {
 			my_sound = audio_play_sound_on(my_emitter, snd_flying_poison_loop_test, true, 1)
 			spd = 100
 			
+			on_step = function() {
+				part_particles_create(global.part_sys, x, y, global.poison_type, 1)
+			}
+			on_hit = function() {
+				part_particles_create(global.part_sys, x, y, global.poison_type, 10)
+			}
+			
 			sprite_index = spr_bullet_needle
+			image_xscale = 1.5
+			image_yscale = 0.5
 			
 			elem = ELEMENT.POISON
 			

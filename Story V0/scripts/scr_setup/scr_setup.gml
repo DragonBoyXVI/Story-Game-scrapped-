@@ -212,6 +212,12 @@ enum MOVES {
 	
 }
 
+enum BULLETS {
+	
+	NEEDLE,
+	
+}
+
 #endregion enums
 #region map keys
 
@@ -349,3 +355,27 @@ global.c_life = make_colour_rgb(4, 100, 26)
 #macro C_LIFE (global.c_life)
 
 #endregion colors and fonts
+#region particles
+
+global.part_sys = part_system_create()
+part_system_depth(global.part_sys, -9990)
+
+#region poison
+
+var _poi_type = part_type_create()
+part_type_shape(_poi_type, pt_shape_cloud)
+part_type_scale(_poi_type, 1, 1)
+part_type_size(_poi_type, 0.25, 1, 0.01, 0)
+part_type_speed(_poi_type, 0.5, 0.8, -0.001, 0.0005)
+part_type_direction(_poi_type, 0, 360, 0, 0.01)
+part_type_orientation(_poi_type, 0, 360, 0, 0, true)
+part_type_color1(_poi_type, C_POISON)
+part_type_alpha2(_poi_type, 1, 0)
+part_type_life(_poi_type, 50, 100)
+
+global.poison_type = _poi_type
+
+
+#endregion poison
+
+#endregion particles

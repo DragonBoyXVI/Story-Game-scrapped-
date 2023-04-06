@@ -1,4 +1,5 @@
 //draw_text(0, 0, [fps, fps_real])
+//draw_text(0, 0, [mus == -1 ? -1 : audio_sound_get_track_position(mus), mus_tex == -1 ? -1 : audio_sound_get_track_position(mus_tex)])
 
 //draw_text(0, 0, room_persistent)
 /*
