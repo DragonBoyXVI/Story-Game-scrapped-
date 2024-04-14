@@ -94,6 +94,7 @@ function fun_check_for_interact(_me, _touched) { //run inside me
 		break
 		
 		case obj_player_bullet:
+		case obj_dunder_overworld:
 		#region
 		
 		_triggered = ( _touched.is_bullet_trigger and ( elem == _touched.bullet_elem or _touched.bullet_elem == ELEMENT.GARBO ) )

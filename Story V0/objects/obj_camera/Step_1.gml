@@ -18,37 +18,6 @@ if (mus_tex_prev != -1) then {
 	
 }
 
-if (mus != -1) then {
-	#region 
-	/*
-	var _pos = audio_sound_get_track_position(mus)
-	if (_pos >= loop_end) then {
-		
-		audio_sound_set_track_position(mus, _pos - loop_sub)
-		
-		if (mus_tex != -1) then {
-			
-			audio_stop_sound(mus_tex)
-			mus_tex = audio_play_sound(mus_tex_index, 2, false, 1)
-			audio_sound_set_track_position(mus_tex, _pos - loop_sub)
-			
-		}
-		
-	}
-	
-	if keyboard_check(ord("I")) then {
-		
-		audio_sound_set_track_position(mus, loop_end - 2)
-		audio_sound_set_track_position(mus_tex, loop_end - 2)
-		
-	}
-	*/
-	#endregion
-	
-	
-}
-
-
 if keyboard_check_pressed(ord("U")) then {
 	fun_play_over_mus(-1, 1)
 	//show_debug_message("deedit")

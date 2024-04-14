@@ -36,17 +36,21 @@ sprite_walk = array_create(2, -1)
 
 wall_layer_elem = -1
 water_layer_elem = -1
+dark_spot_elem = -1
 
 bbox_width = -1
 bbox_height = -1
 
 function fun_set_player(_player) {
 	
+	GAME_CURPLAYER = _player
+	
 	switch(_player) {
 		
 		case PLAYERS.DRAC:
 		#region set up drac
 		
+		spd = 5
 		swm_spd = 0.75
 		
 		sprite_flips = false
@@ -58,6 +62,74 @@ function fun_set_player(_player) {
 		sprite_walk[1] = spr_over_drac_walk_right //right
 		
 		#endregion set up drac
+		break
+		
+		case PLAYERS.KATE:
+		#region set up kate
+		
+		spd = 3
+		swm_spd = 0.45
+		
+		sprite_flips = true
+		
+		sprite_idle[0] = spr_over_drac_idle_left //left
+		sprite_idle[1] = spr_over_drac_idle_right //right
+		
+		sprite_walk[0] = spr_over_drac_walk_left //left
+		sprite_walk[1] = spr_over_drac_walk_right //right
+		
+		#endregion set up kate
+		break
+		
+		case PLAYERS.MUD:
+		#region set up mud
+		
+		spd = 4
+		swm_spd = 0.8
+		
+		sprite_flips = false
+		
+		sprite_idle[0] = spr_over_drac_idle_left //left
+		sprite_idle[1] = spr_over_drac_idle_right //right
+		
+		sprite_walk[0] = spr_over_drac_walk_left //left
+		sprite_walk[1] = spr_over_drac_walk_right //right
+		
+		#endregion set up mud
+		break
+		
+		case PLAYERS.FEVIR:
+		#region set up fev
+		
+		spd = 3
+		swm_spd = 0.45
+		
+		sprite_flips = true
+		
+		sprite_idle[0] = spr_over_drac_idle_left //left
+		sprite_idle[1] = spr_over_drac_idle_right //right
+		
+		sprite_walk[0] = spr_over_drac_walk_left //left
+		sprite_walk[1] = spr_over_drac_walk_right //right
+		
+		#endregion set up fev
+		break
+		
+		case PLAYERS.JAB:
+		#region set up jab
+		
+		spd = 4
+		swm_spd = 1.25
+		
+		sprite_flips = false
+		
+		sprite_idle[0] = spr_over_drac_idle_left //left
+		sprite_idle[1] = spr_over_drac_idle_right //right
+		
+		sprite_walk[0] = spr_over_drac_walk_left //left
+		sprite_walk[1] = spr_over_drac_walk_right //right
+		
+		#endregion set up jab
 		break
 		
 	}

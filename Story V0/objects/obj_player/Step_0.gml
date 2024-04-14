@@ -11,6 +11,20 @@ switch(state) {
 	case STATES.PLAY:
 	#region standard play
 	
+	#region testing
+	
+	if (keyboard_check(vk_shift)) then {
+		if keyboard_check_pressed(ord("1")) then fun_set_player(PLAYERS.DRAC)
+		if keyboard_check_pressed(ord("2")) then fun_set_player(PLAYERS.KATE)
+		if keyboard_check_pressed(ord("3")) then fun_set_player(PLAYERS.MUD)
+		if keyboard_check_pressed(ord("4")) then fun_set_player(PLAYERS.FEVIR)
+		if keyboard_check_pressed(ord("5")) then fun_set_player(PLAYERS.JAB)
+	}
+	
+	YSCALE += (keyboard_check(ord("L")) - keyboard_check(ord("K")))/100
+	
+	#endregion testing
+	
 	var _wtr = in_water ? swm_spd : 1
 	
 	var _xspd = round( spd * (key_right - key_left) * _wtr )
@@ -128,20 +142,33 @@ switch(state) {
 			switch(GAME_CURPLAYER) {
 				
 				case PLAYERS.DRAC:
-				#region
+				#region needle
 				
 				state = STATES.SPEC
 				image_index = 0
 				sprite_index = face_right ? spr_over_drac_needle_pullup_right : spr_over_drac_needle_pullup_left
 				
-				#endregion
+				#endregion nelde
 				break
 				
 			}
 			
 		} else if (mouse_left_clicked) then {
 			
-			
+			switch(GAME_CURPLAYER) {
+				
+				case PLAYERS.DRAC:
+				#region dunder
+				
+				state = STATES.SPEC
+				image_index = 0
+				sprite_index = face_right ? spr_over_drac_dunder_begin_right : spr_over_drac_dunder_begin_left
+				//obj_camera.follow_obj = obj_dunder_overworld
+				
+				#endregion dunder
+				break
+				
+			}
 			
 		}
 		
@@ -153,7 +180,7 @@ switch(state) {
 	break
 	
 	case STATES.SP_DRAC_BULLET:
-	#region
+	#region drac throwing her poison
 	
 	var _mouse_face = (mouse_x > x)
 	
@@ -174,7 +201,7 @@ switch(state) {
 		
 	}
 	
-	#endregion
+	#endregion drac throwing his poison
 	break
 	
 }

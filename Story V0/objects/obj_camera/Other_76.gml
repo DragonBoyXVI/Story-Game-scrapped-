@@ -44,6 +44,25 @@ if (_type == "sequence event") then {
 		}
 		break
 		
+		case "drac over make dunder":
+		obj_camera.follow_obj = instance_create_depth(_this.x, _this.y, _this.depth, obj_dunder_overworld, {my_owner: _this.id})
+		break
+		
+		case "drac over pop dunder":
+		with obj_dunder_overworld {
+			state = 2
+			event_perform(ev_step, ev_step_normal)
+		}
+		obj_camera.follow_obj = _this.id
+		break
+		
+		case "over dunder do it":
+		with _this {
+			fun_check_for_interact(id, instance_place(x, y, obj_cutscene_trigger))
+			//state = 4
+		}
+		break
+		
 	}
 	
 }

@@ -15,6 +15,8 @@ switch(sprite_index) {
 	
 	case spr_over_drac_needle_fire_left:
 	case spr_over_drac_needle_fire_right:
+	case spr_over_drac_dunder_spike_right:
+	case spr_over_drac_dunder_spike_left:
 	fun_change_sprite()
 	state = STATES.PLAY
 	break
@@ -28,6 +30,12 @@ switch(sprite_index) {
 	face = face_right ? FACES.RIGHT : FACES.LEFT
 	
 	#endregion 
+	break
+	
+	case spr_over_drac_dunder_begin_left:
+	case spr_over_drac_dunder_begin_right:
+	state = STATES.SP_DRAC_DUNDER
+	sprite_index = face_right ? spr_over_drac_dunder_idle_right : spr_over_drac_dunder_idle_left
 	break
 	
 }

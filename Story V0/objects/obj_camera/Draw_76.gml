@@ -1,6 +1,7 @@
 
 //global.settings.shader_on = keyboard_check(ord("L"))
 
+//
 if (SETTINGS_SHADER) then {
 	
 	shader_set(shd_replace_blackwhite)

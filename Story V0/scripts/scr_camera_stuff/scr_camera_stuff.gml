@@ -6,7 +6,7 @@ function fun_room_to_shader() {
 	switch(room) {
 		
 		case rm_test:
-		blend_color = array_create(3, 178/255)
+		blend_color = array_create(3, /*178*/255)
 		blend_amt = 0.1
 		break
 		
